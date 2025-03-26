@@ -778,6 +778,7 @@ function App() {
               {/* Footer */}
               <footer className="relative mt-12">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/25 to-transparent pointer-events-none" />
+                
                 <div className="relative border-t border-white/5">
                   <div className="container mx-auto px-4 py-12">
                     {/* Footer Grid */}
@@ -858,10 +859,28 @@ function App() {
                     {/* Bottom Bar */}
                     <div className="pt-8 border-t border-white/5">
                       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                        <div className="text-white/40 text-base">
-                          Created with <span className="text-red-500">❤️</span> by Mausam Kar
+                        {/* Author Info with Photo */}
+                        <div className="flex items-center gap-3">
+                          <div className="relative group">
+                            {/* Glow Effect */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                            
+                            {/* Photo Container */}
+                            <div className="relative bg-[#111111] border border-white/10 rounded-xl overflow-hidden">
+                              <img
+                                src="/avatar.jpg"
+                                alt="Mausam Kar"
+                                className="w-12 h-12 object-cover"
+                              />
+                            </div>
+                          </div>
+                          <div className="text-white/40 text-base">
+                            Created with <span className="text-red-500">❤️</span> by Mausam Kar
+                          </div>
                         </div>
-                        <div className="text-white/40 text-base">
+
+                        {/* Copyright - Now visible on both mobile and desktop */}
+                        <div className="text-white/40 text-base text-center md:text-left">
                           © {new Date().getFullYear()} Weather ForeCasts. All Rights Reserved
                         </div>
                       </div>
