@@ -21,9 +21,23 @@ function App() {
     return !localStorage.getItem('weatherAppVisited');
   });
 
+  // Handle browser back button
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      if (weather) {
+        setWeather(null);
+        setError(null);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [weather]);
+
   const handleBackToHome = () => {
     setWeather(null);
     setError(null);
+    window.history.pushState({}, '', '/');
   };
 
   const fetchWeather = async (query: string) => {
@@ -54,6 +68,9 @@ function App() {
       localStorage.setItem('lastLocation', query);
       setShowWelcome(false);
       localStorage.setItem('weatherAppVisited', 'true');
+      
+      // Push new state to history when weather data is loaded
+      window.history.pushState({ weather: true }, '', '/weather');
     } catch (err) {
       console.error('Weather API Error:', err);
       setError(err instanceof Error ? err.message : 'Failed to fetch weather data');
@@ -129,20 +146,6 @@ function App() {
                 {/* Brand Row */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <button 
-                      onClick={handleBackToHome}
-                      className="group bg-gradient-to-r from-purple-400/10 to-pink-400/10 hover:from-purple-400/20 hover:to-pink-400/20 p-2 rounded-lg text-white/80 hover:text-white border border-white/10 hover:border-white/20 transition-all duration-300 mr-2"
-                    >
-                      <svg 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        viewBox="0 0 24 24" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        className="w-5 h-5"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                      </svg>
-                    </button>
                     <div className="p-1.5 bg-white/5 rounded-lg border border-white/5">
                       <svg 
                         xmlns="http://www.w3.org/2000/svg" 
@@ -192,20 +195,6 @@ function App() {
             {/* Desktop View */}
             <div className="hidden md:flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <button 
-                  onClick={handleBackToHome}
-                  className="group bg-gradient-to-r from-purple-400/10 to-pink-400/10 hover:from-purple-400/20 hover:to-pink-400/20 p-2 rounded-lg text-white/80 hover:text-white border border-white/10 hover:border-white/20 transition-all duration-300 mr-2"
-                >
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    className="w-5 h-5"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                  </svg>
-                </button>
                 <div className="p-2 bg-white/5 rounded-xl border border-white/5">
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
