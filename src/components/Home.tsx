@@ -3,7 +3,6 @@ import { SearchBar } from './SearchBar';
 import { MapPin, Sun, Moon, Cloud, Wind, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import weatherHouse from '../assets/weather-house.svg';
-import { TimeDisplay } from './TimeDisplay';
 
 interface HomeProps {
   onSearch: (query: string) => void;
@@ -170,11 +169,6 @@ export const Home: React.FC<HomeProps> = ({ onSearch, onUseLocation }) => {
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5" />
         )}
-      </div>
-
-      {/* Time Display */}
-      <div className="absolute top-0 left-0 z-50">
-        <TimeDisplay />
       </div>
 
       {/* Content Container */}
