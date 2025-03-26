@@ -2,7 +2,7 @@
 
 A modern, responsive weather forecast application built with React, TypeScript, and TailwindCSS.
 
-[![Live Preview](https://img.shields.io/badge/Live%20Preview-Visit%20Site-green?style=for-the-badge)](https://weather-forecasts-demo.netlify.app)
+[![Live Preview](https://img.shields.io/badge/Live%20Preview-Visit%20Site-green?style=for-the-badge)](https://weather-forecasts-five.vercel.app/)
 ![Weather Forecasts Preview](public/preview.png)
 
 ## 🚀 Features
@@ -75,9 +75,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact
 
 - **Name:** Mausam Kar
-- **Email:** [your.email@example.com](mailto:your.email@example.com)
-- **GitHub:** [@yourusername](https://github.com/yourusername)
-- **LinkedIn:** [Mausam Kar](https://linkedin.com/in/yourusername)
+- **Email:** [your.email@example.com](rikikumkar@gmail.com)
+- **GitHub:** [@yourusername](https://github.com/Mausam5055)
+- **LinkedIn:** [Mausam Kar](https://www.linkedin.com/in/mausam-kar-6388861a7/)
 
 ---
 
