@@ -6,25 +6,35 @@
     <!-- Primary Meta Tags -->
     <title>Weather Forecasts - Real-time Weather Information</title>
     <meta name="title" content="Weather Forecasts - Real-time Weather Information">
-    <meta name="description" content="Get accurate real-time weather forecasts with a beautiful, responsive interface. Built with React, TypeScript, and TailwindCSS.">
-    <meta name="keywords" content="weather forecast, weather app, real-time weather, temperature, humidity, wind speed">
+    <meta name="description" content="Get accurate real-time weather forecasts with a beautiful, responsive interface. Check temperature, humidity, wind speed, and 5-day forecasts for any location worldwide.">
+    <meta name="keywords" content="weather forecast, weather app, real-time weather, temperature, humidity, wind speed, 5-day forecast, weather radar, weather maps">
     <meta name="author" content="Mausam Kar">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://weather-forecasts-five.vercel.app/">
     <meta property="og:title" content="Weather Forecasts - Real-time Weather Information">
-    <meta property="og:description" content="Get accurate real-time weather forecasts with a beautiful, responsive interface. Built with React, TypeScript, and TailwindCSS.">
+    <meta property="og:description" content="Get accurate real-time weather forecasts with a beautiful, responsive interface. Check temperature, humidity, wind speed, and 5-day forecasts for any location worldwide.">
     <meta property="og:image" content="https://weather-forecasts-five.vercel.app/preview.png">
     <meta property="og:site_name" content="Weather Forecasts">
+    <meta property="og:locale" content="en_US">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://weather-forecasts-five.vercel.app/">
     <meta property="twitter:title" content="Weather Forecasts - Real-time Weather Information">
-    <meta property="twitter:description" content="Get accurate real-time weather forecasts with a beautiful, responsive interface. Built with React, TypeScript, and TailwindCSS.">
+    <meta property="twitter:description" content="Get accurate real-time weather forecasts with a beautiful, responsive interface. Check temperature, humidity, wind speed, and 5-day forecasts for any location worldwide.">
     <meta property="twitter:image" content="https://weather-forecasts-five.vercel.app/preview.png">
     <meta property="twitter:creator" content="@yourusername">
+
+    <!-- WhatsApp -->
+    <meta property="og:site_name" content="Weather Forecasts">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="Weather Forecasts App Preview">
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -41,6 +51,37 @@
     <!-- Preconnect to important domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Weather Forecasts",
+      "description": "Get accurate real-time weather forecasts with a beautiful, responsive interface. Check temperature, humidity, wind speed, and 5-day forecasts for any location worldwide.",
+      "url": "https://weather-forecasts-five.vercel.app/",
+      "applicationCategory": "Weather Application",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Mausam Kar"
+      },
+      "featureList": [
+        "Real-time weather data",
+        "5-day weather forecast",
+        "Temperature information",
+        "Humidity levels",
+        "Wind speed data",
+        "Location-based weather"
+      ],
+      "screenshot": "https://weather-forecasts-five.vercel.app/preview.png"
+    }
+    </script>
     
     <style>
       body, #root {
