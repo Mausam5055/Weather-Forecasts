@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://weather-forecasts-five.vercel.app/sitemap.xml 
