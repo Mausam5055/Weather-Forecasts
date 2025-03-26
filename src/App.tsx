@@ -134,11 +134,11 @@ function App() {
   return (
     <div className="min-h-screen bg-[#000000] text-white">
       {/* Background Gradient */}
-      <div className="fixed inset-0 bg-gradient-to-br from-purple-900/20 via-black to-pink-900/20 pointer-events-none" />
+      <div className="fixed inset-0 bg-gradient-to-br from-purple-900/10 via-black to-pink-900/10 pointer-events-none" />
       
       <div className="relative">
         {/* Navigation Bar - Responsive */}
-        <div className="w-full bg-black/40 backdrop-blur-md border-b border-white/5">
+        <div className="w-full bg-black/20 border-b border-white/5">
           <div className="container mx-auto px-4 md:px-6 py-4 max-w-7xl">
             {/* Mobile View */}
             <div className="md:hidden">
@@ -146,7 +146,7 @@ function App() {
                 {/* Brand Row */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <div className="p-1.5 bg-black/40 rounded-lg border border-white/5 backdrop-blur-md">
+                    <div className="p-1.5 bg-black/30 rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300">
                       <svg 
                         xmlns="http://www.w3.org/2000/svg" 
                         viewBox="0 0 24 24" 
@@ -175,7 +175,7 @@ function App() {
                   {weather && (
                     <button 
                       onClick={() => fetchWeather(weather.location.name)}
-                      className="group bg-gradient-to-r from-purple-400/10 to-pink-400/10 hover:from-purple-400/20 hover:to-pink-400/20 p-2 rounded-lg text-white/80 hover:text-white border border-white/10 hover:border-white/20 transition-all duration-300"
+                      className="group bg-black/30 hover:bg-black/40 p-2 rounded-lg text-white/80 hover:text-white border border-white/10 hover:border-white/20 transition-all duration-300"
                     >
                       <svg 
                         xmlns="http://www.w3.org/2000/svg" 
@@ -194,8 +194,8 @@ function App() {
 
             {/* Desktop View */}
             <div className="hidden md:flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-black/40 rounded-xl border border-white/5 backdrop-blur-md">
+              <div className="flex items-center gap-6">
+                <div className="p-2 bg-black/30 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300">
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     viewBox="0 0 24 24" 
@@ -228,7 +228,7 @@ function App() {
                 {weather && (
                   <div className="flex items-center gap-5">
                     {/* Last Updated Status */}
-                    <div className="text-sm text-white/60 flex items-center gap-2 bg-black/40 px-4 py-2 rounded-full border border-white/5">
+                    <div className="text-sm text-white/60 flex items-center gap-2 bg-black/30 px-4 py-2 rounded-full border border-white/10">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-purple-400">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
@@ -238,7 +238,7 @@ function App() {
                     {/* Refresh Button */}
                     <button 
                       onClick={() => fetchWeather(weather.location.name)}
-                      className="group bg-gradient-to-r from-purple-400/10 to-pink-400/10 hover:from-purple-400/20 hover:to-pink-400/20 px-4 py-2 rounded-full text-sm text-white/80 hover:text-white flex items-center gap-2 border border-white/10 hover:border-white/20 transition-all duration-300"
+                      className="group bg-black/30 hover:bg-black/40 px-4 py-2 rounded-full text-sm text-white/80 hover:text-white flex items-center gap-2 border border-white/10 hover:border-white/20 transition-all duration-300"
                     >
                       <svg 
                         xmlns="http://www.w3.org/2000/svg" 
