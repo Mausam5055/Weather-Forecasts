@@ -138,7 +138,7 @@ function App() {
       
       <div className="relative">
         {/* Navigation Bar - Responsive */}
-        <div className="w-full bg-[#111111]/80 backdrop-blur-xl border-b border-white/5">
+        <div className="w-full bg-black/40 backdrop-blur-md border-b border-white/5">
           <div className="container mx-auto px-4 md:px-6 py-4 max-w-7xl">
             {/* Mobile View */}
             <div className="md:hidden">
@@ -146,7 +146,7 @@ function App() {
                 {/* Brand Row */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <div className="p-1.5 bg-white/5 rounded-lg border border-white/5">
+                    <div className="p-1.5 bg-black/40 rounded-lg border border-white/5 backdrop-blur-md">
                       <svg 
                         xmlns="http://www.w3.org/2000/svg" 
                         viewBox="0 0 24 24" 
@@ -195,7 +195,7 @@ function App() {
             {/* Desktop View */}
             <div className="hidden md:flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-white/5 rounded-xl border border-white/5">
+                <div className="p-2 bg-black/40 rounded-xl border border-white/5 backdrop-blur-md">
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     viewBox="0 0 24 24" 
@@ -228,7 +228,7 @@ function App() {
                 {weather && (
                   <div className="flex items-center gap-5">
                     {/* Last Updated Status */}
-                    <div className="text-sm text-white/60 flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/5">
+                    <div className="text-sm text-white/60 flex items-center gap-2 bg-black/40 px-4 py-2 rounded-full border border-white/5">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-purple-400">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
