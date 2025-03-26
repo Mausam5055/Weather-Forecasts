@@ -10,8 +10,12 @@ import { Loader2 } from 'lucide-react';
 import './styles/scrollbar.css';
 
 // Replace this with your new API key from weatherapi.com
-const API_KEY = '0c6e01262d484a5199b161711252603';
+const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 const API_BASE_URL = 'https://api.weatherapi.com/v1';
+
+if (!API_KEY) {
+  console.error('Missing VITE_WEATHER_API_KEY environment variable. Please add it to your .env file.');
+}
 
 function App() {
   const [weather, setWeather] = useState<WeatherData | null>(null);
@@ -40,14 +44,17 @@ function App() {
     window.history.pushState({}, '', '/');
   };
 
-  const fetchWeather = async (query: string) => {
+  const fetchWeather = async (query: string, retryCount = 0) => {
+    const MAX_RETRIES = 3;
+    const RETRY_DELAY = 1000; // 1 second
+
     try {
       setLoading(true);
       setError(null);
 
       // Add error handling for empty API key
       if (!API_KEY) {
-        throw new Error('Please add your WeatherAPI.com API key in App.tsx');
+        throw new Error('Please add your WeatherAPI.com API key in your .env file');
       }
 
       const response = await fetch(
@@ -73,6 +80,14 @@ function App() {
       window.history.pushState({ weather: true }, '', '/weather');
     } catch (err) {
       console.error('Weather API Error:', err);
+      
+      // Retry logic for network errors or 5xx server errors
+      if (retryCount < MAX_RETRIES && 
+          (err instanceof TypeError || (err instanceof Error && err.message.includes('500')))) {
+        await new Promise(resolve => setTimeout(resolve, RETRY_DELAY));
+        return fetchWeather(query, retryCount + 1);
+      }
+      
       setError(err instanceof Error ? err.message : 'Failed to fetch weather data');
       setWeather(null);
     } finally {
@@ -102,14 +117,17 @@ function App() {
   // Auto-refresh weather data every 30 minutes if we have a location
   useEffect(() => {
     if (weather) {
-      const refreshInterval = setInterval(() => {
+      const refreshInterval = Number(import.meta.env.VITE_WEATHER_REFRESH_INTERVAL) || 30;
+      const refreshIntervalMs = refreshInterval * 60 * 1000;
+
+      const refreshIntervalId = setInterval(() => {
         const lastLocation = localStorage.getItem('lastLocation');
         if (lastLocation) {
           fetchWeather(lastLocation);
         }
-      }, 30 * 60 * 1000);
+      }, refreshIntervalMs);
 
-      return () => clearInterval(refreshInterval);
+      return () => clearInterval(refreshIntervalId);
     }
   }, [weather]);
 
