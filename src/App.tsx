@@ -285,12 +285,30 @@ function App() {
                 <div className="text-xl md:text-2xl text-white/60 mt-1">
                   {weather.location.country}
                 </div>
-                <div className="flex items-center justify-center gap-3 mt-3">
-                  <div className="text-white/60 text-sm md:text-base bg-[#1A1A1A] px-4 py-2 rounded-full border border-white/5">
+                <div className="flex flex-wrap items-center justify-center gap-3 mt-3">
+                  <div className="flex items-center gap-2 text-white/60 text-sm md:text-base bg-[#1A1A1A] px-4 py-2 rounded-full border border-white/5">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-yellow-400">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
                     Max: {Math.round(weather.forecast.forecastday[0].day.maxtemp_c)}°
                   </div>
-                  <div className="text-white/60 text-sm md:text-base bg-[#1A1A1A] px-4 py-2 rounded-full border border-white/5">
+                  <div className="flex items-center gap-2 text-white/60 text-sm md:text-base bg-[#1A1A1A] px-4 py-2 rounded-full border border-white/5">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-blue-400">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12l-6.172-6.172a4 4 0 00-5.656 0L2 12m0 0l6.172 6.172a4 4 0 005.656 0L20 12m0 0l-2.172-2.172M20 12l-2.172 2.172" />
+                    </svg>
                     Min: {Math.round(weather.forecast.forecastday[0].day.mintemp_c)}°
+                  </div>
+                  <div className="flex items-center gap-2 text-white/60 text-sm md:text-base bg-[#1A1A1A] px-4 py-2 rounded-full border border-white/5">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-purple-400">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    {new Date(weather.location.localtime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </div>
+                  <div className="flex items-center gap-2 text-white/60 text-sm md:text-base bg-[#1A1A1A] px-4 py-2 rounded-full border border-white/5">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-pink-400">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    {weather.location.tz_id.split('/')[1].replace('_', ' ')}
                   </div>
                 </div>
               </div>
@@ -298,10 +316,58 @@ function App() {
               {/* Desktop Layout */}
               <div className="md:grid md:grid-cols-12 md:gap-6">
                 {/* Left Column - Main Weather */}
-                <div className="md:col-span-7 space-y-6">
+                <div className="md:col-span-8 space-y-6">
                   {/* Main Weather Card */}
                   <WeatherCard weather={weather} />
                   
+                  {/* Search Another City - Mobile Only */}
+                  <div className="block md:hidden">
+                    <div className="bg-[#111111] rounded-3xl p-6 text-white backdrop-blur-lg border border-white/5 shadow-2xl hover:bg-[#161616] transition-all duration-300">
+                      <h2 className="text-xl font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
+                        Search Another City
+                      </h2>
+                      <div className="flex flex-col gap-4">
+                        <div className="relative">
+                          <input
+                            type="text"
+                            placeholder="Enter city name..."
+                            className="w-full bg-white/5 rounded-xl px-4 py-3 text-white placeholder-white/40 border border-white/5 focus:border-purple-400/50 focus:outline-none focus:ring-2 focus:ring-purple-400/20 transition-all duration-300"
+                            onKeyPress={(e) => {
+                              if (e.key === 'Enter') {
+                                fetchWeather((e.target as HTMLInputElement).value);
+                              }
+                            }}
+                          />
+                          <div className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => navigator.geolocation.getCurrentPosition(
+                            (position) => {
+                              const { latitude, longitude } = position.coords;
+                              fetchWeather(`${latitude},${longitude}`);
+                            },
+                            (error) => {
+                              console.error('Geolocation Error:', error);
+                              const lastLocation = localStorage.getItem('lastLocation') || 'London';
+                              fetchWeather(lastLocation);
+                            }
+                          )}
+                          className="bg-gradient-to-r from-purple-400/10 to-pink-400/10 hover:from-purple-400/20 hover:to-pink-400/20 px-4 py-3 rounded-xl text-white/80 hover:text-white flex items-center justify-center gap-2 border border-white/10 hover:border-white/20 transition-all duration-300"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                          <span>Use My Location</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
                   {/* Search Another City - Desktop Only */}
                   <div className="hidden md:block">
                     <div className="bg-[#111111] rounded-3xl p-6 text-white backdrop-blur-lg border border-white/5 shadow-2xl hover:bg-[#161616] transition-all duration-300">
@@ -409,34 +475,54 @@ function App() {
                     </div>
                   </div>
 
-                  {/* Weather Tips - Desktop Only */}
-                  <div className="hidden md:block">
-                    <div className="bg-[#111111] rounded-3xl p-6 text-white backdrop-blur-lg border border-white/5 shadow-2xl hover:bg-[#161616] transition-all duration-300">
-                      <h2 className="text-xl font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
-                        Weather Tips
-                      </h2>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="flex items-start gap-3">
-                          <div className="p-2 rounded-lg bg-green-500/10">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 text-green-500">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                          </div>
-                          <div>
-                            <h3 className="text-sm font-medium text-white/90">Outdoor Activity</h3>
-                            <p className="text-sm text-white/60">Great conditions for walking or cycling</p>
-                          </div>
+                  {/* Weather Tips Card */}
+                  <div className="bg-[#111111] rounded-3xl p-8 text-white backdrop-blur-lg border border-white/5 shadow-2xl hover:bg-[#161616] transition-all duration-300">
+                    <h2 className="text-xl font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">
+                      Weather Tips
+                    </h2>
+                    <div className="grid grid-cols-2 gap-6">
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 rounded-lg bg-green-500/10">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-6 h-6 text-green-500">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
                         </div>
-                        <div className="flex items-start gap-3">
-                          <div className="p-2 rounded-lg bg-purple-500/10">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 text-purple-500">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-                            </svg>
-                          </div>
-                          <div>
-                            <h3 className="text-sm font-medium text-white/90">Air Quality</h3>
-                            <p className="text-sm text-white/60">Fresh air, perfect for ventilation</p>
-                          </div>
+                        <div>
+                          <h3 className="text-base font-medium text-white/90">Outdoor Activity</h3>
+                          <p className="text-sm text-white/60 mt-1">Great conditions for walking or cycling</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 rounded-lg bg-purple-500/10">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-6 h-6 text-purple-500">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 className="text-base font-medium text-white/90">Air Quality</h3>
+                          <p className="text-sm text-white/60 mt-1">Fresh air, perfect for ventilation</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 rounded-lg bg-yellow-500/10">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-6 h-6 text-yellow-500">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 className="text-base font-medium text-white/90">UV Protection</h3>
+                          <p className="text-sm text-white/60 mt-1">Moderate UV levels, use sunscreen</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 rounded-lg bg-blue-500/10">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-6 h-6 text-blue-500">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 className="text-base font-medium text-white/90">Wind Advisory</h3>
+                          <p className="text-sm text-white/60 mt-1">Light breeze, ideal for outdoor dining</p>
                         </div>
                       </div>
                     </div>
@@ -444,17 +530,17 @@ function App() {
                   
                   {/* Hourly Forecast - Mobile Only */}
                   <div className="md:hidden">
-                  <HourlyForecast 
-                    forecast={weather.forecast.forecastday[0].hour.map(hour => ({
-                      time: hour.time,
-                      temp_c: hour.temp_c,
-                      condition: hour.condition,
-                      chance_of_rain: hour.chance_of_rain,
-                      humidity: hour.humidity,
-                      wind_kph: hour.wind_kph,
-                      feelslike_c: hour.feelslike_c
-                    }))}
-                  />
+                    <HourlyForecast 
+                      forecast={weather.forecast.forecastday[0].hour.map(hour => ({
+                        time: hour.time,
+                        temp_c: hour.temp_c,
+                        condition: hour.condition,
+                        chance_of_rain: hour.chance_of_rain,
+                        humidity: hour.humidity,
+                        wind_kph: hour.wind_kph,
+                        feelslike_c: hour.feelslike_c
+                      }))}
+                    />
                   </div>
 
                   {/* Weekly Forecast - Mobile Only */}
@@ -464,7 +550,7 @@ function App() {
                 </div>
 
                 {/* Right Column - Additional Info */}
-                <div className="md:col-span-5 space-y-6 mt-8 md:mt-0">
+                <div className="md:col-span-4 space-y-6 mt-8 md:mt-0">
                   {/* AI Suggestions */}
                   <AISuggestions weather={weather} />
 
@@ -518,34 +604,83 @@ function App() {
                     </div>
                   </div>
 
-                  {/* Additional Weather Details Card */}
+                  {/* Weather & Wind Details Combined Card */}
                   <div className="bg-[#111111] rounded-3xl p-6 text-white backdrop-blur-lg border border-white/5 shadow-2xl hover:bg-[#161616] transition-all duration-300">
-                    <div className="text-lg font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
-                      Weather Details
+                    <div className="text-lg font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">
+                      Weather & Wind Details
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <div className="text-sm text-white/60 mb-2">Humidity</div>
-                        <div className="text-xl font-semibold text-white">
-                          {weather.current.humidity}%
+                    <div className="space-y-6">
+                      {/* Wind Direction and Speed */}
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between bg-white/5 rounded-xl p-4 border border-white/5">
+                          <div className="flex items-center gap-3">
+                            <div className="p-2 rounded-lg bg-blue-500/10">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 text-blue-400">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" />
+                              </svg>
+                            </div>
+                            <div>
+                              <div className="text-sm text-white/60">Wind Direction</div>
+                              <div className="text-lg font-semibold">{weather.current.wind_dir}</div>
+                            </div>
+                          </div>
+                          <div className="text-2xl font-bold text-white">{weather.current.wind_degree}°</div>
+                        </div>
+                        <div className="flex items-center justify-between bg-white/5 rounded-xl p-4 border border-white/5">
+                          <div className="flex items-center gap-3">
+                            <div className="p-2 rounded-lg bg-purple-500/10">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 text-purple-400">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                              </svg>
+                            </div>
+                            <div>
+                              <div className="text-sm text-white/60">Wind Speed</div>
+                              <div className="text-lg font-semibold">{weather.current.wind_kph} km/h</div>
+                            </div>
+                          </div>
+                          <div className="text-sm text-white/40">
+                            Gusts up to {weather.current.gust_kph} km/h
+                          </div>
                         </div>
                       </div>
-                      <div>
-                        <div className="text-sm text-white/60 mb-2">Wind Speed</div>
-                        <div className="text-xl font-semibold text-white">
-                          {weather.current.wind_kph} km/h
+
+                      {/* Weather Details Grid */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <div className="text-sm text-white/60 mb-2">Humidity</div>
+                          <div className="text-xl font-semibold text-white">
+                            {weather.current.humidity}%
+                          </div>
                         </div>
-                      </div>
-                      <div>
-                        <div className="text-sm text-white/60 mb-2">Feels Like</div>
-                        <div className="text-xl font-semibold text-white">
-                          {weather.current.feelslike_c}°
+                        <div>
+                          <div className="text-sm text-white/60 mb-2">Feels Like</div>
+                          <div className="text-xl font-semibold text-white">
+                            {weather.current.feelslike_c}°
+                          </div>
                         </div>
-                      </div>
-                      <div>
-                        <div className="text-sm text-white/60 mb-2">Precipitation</div>
-                        <div className="text-xl font-semibold text-white">
-                          {weather.current.precip_mm} mm
+                        <div>
+                          <div className="text-sm text-white/60 mb-2">Visibility</div>
+                          <div className="text-xl font-semibold text-white">
+                            {weather.current.vis_km} km
+                          </div>
+                        </div>
+                        <div>
+                          <div className="text-sm text-white/60 mb-2">Pressure</div>
+                          <div className="text-xl font-semibold text-white">
+                            {weather.current.pressure_mb} mb
+                          </div>
+                        </div>
+                        <div>
+                          <div className="text-sm text-white/60 mb-2">Cloud Cover</div>
+                          <div className="text-xl font-semibold text-white">
+                            {weather.current.cloud}%
+                          </div>
+                        </div>
+                        <div>
+                          <div className="text-sm text-white/60 mb-2">Precipitation</div>
+                          <div className="text-xl font-semibold text-white">
+                            {weather.current.precip_mm} mm
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -600,66 +735,6 @@ function App() {
                         <div className="text-sm text-white/60 mb-2">Gust Speed</div>
                         <div className="text-xl font-semibold text-white">
                           {weather.current.gust_kph} km/h
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Wind Details Card */}
-                  <div className="bg-[#111111] rounded-3xl p-6 text-white backdrop-blur-lg border border-white/5 shadow-2xl hover:bg-[#161616] transition-all duration-300">
-                    <div className="text-lg font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
-                      Wind Details
-                    </div>
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between bg-white/5 rounded-xl p-4 border border-white/5">
-                        <div className="flex items-center gap-3">
-                          <div className="p-2 rounded-lg bg-blue-500/10">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 text-blue-400">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" />
-                            </svg>
-                          </div>
-                          <div>
-                            <div className="text-sm text-white/60">Direction</div>
-                            <div className="text-lg font-semibold">{weather.current.wind_dir}</div>
-                          </div>
-                        </div>
-                        <div className="text-2xl font-bold text-white">{weather.current.wind_degree}°</div>
-                      </div>
-                      <div className="flex items-center justify-between bg-white/5 rounded-xl p-4 border border-white/5">
-                        <div className="flex items-center gap-3">
-                          <div className="p-2 rounded-lg bg-purple-500/10">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 text-purple-400">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                          </div>
-                          <div>
-                            <div className="text-sm text-white/60">Wind Speed</div>
-                            <div className="text-lg font-semibold">{weather.current.wind_kph} km/h</div>
-                          </div>
-                        </div>
-                        <div className="text-sm text-white/40">
-                          Gusts up to {weather.current.gust_kph} km/h
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Local Time Card */}
-                  <div className="bg-[#111111] rounded-3xl p-6 text-white backdrop-blur-lg border border-white/5 shadow-2xl hover:bg-[#161616] transition-all duration-300">
-                    <div className="text-lg font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
-                      Local Information
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <div className="text-sm text-white/60 mb-2">Local Time</div>
-                        <div className="text-xl font-semibold text-white">
-                          {new Date(weather.location.localtime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                        </div>
-                      </div>
-                      <div>
-                        <div className="text-sm text-white/60 mb-2">Time Zone</div>
-                        <div className="text-xl font-semibold text-white">
-                          {weather.location.tz_id.split('/')[1].replace('_', ' ')}
                         </div>
                       </div>
                     </div>
