@@ -860,7 +860,7 @@ function App() {
                     <div className="pt-8 border-t border-white/5">
                       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                         {/* Author Info with Photo */}
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 order-2 md:order-1">
                           <div className="relative group">
                             {/* Glow Effect */}
                             <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
@@ -879,8 +879,8 @@ function App() {
                           </div>
                         </div>
 
-                        {/* Copyright - Now visible on both mobile and desktop */}
-                        <div className="text-white/40 text-base text-center md:text-left">
+                        {/* Copyright */}
+                        <div className="text-white/40 text-base text-center md:text-left order-1 md:order-2">
                           © {new Date().getFullYear()} Weather ForeCasts. All Rights Reserved
                         </div>
                       </div>
