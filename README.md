@@ -75,8 +75,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact
 
 - **Name:** Mausam Kar
-- **Email:** [your.email@example.com](rikikumkar@gmail.com)
-- **GitHub:** [@yourusername](https://github.com/Mausam5055)
+- **Email:** [rikikumkar@gmail.com](rikikumkar@gmail.com)
+- **GitHub:** [@mausamkar](https://github.com/Mausam5055)
 - **LinkedIn:** [Mausam Kar](https://www.linkedin.com/in/mausam-kar-6388861a7/)
 
 ---
