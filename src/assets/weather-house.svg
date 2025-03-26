@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240" height="160" viewBox="0 0 240 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- House base -->
+  <path d="M40 80h160v60H40z" fill="#4A3AFF" opacity="0.2"/>
+  <!-- Roof -->
+  <path d="M20 80L120 20l100 60H20z" fill="#6B4EFF" opacity="0.3"/>
+  <!-- Windows -->
+  <rect x="60" y="100" width="30" height="30" rx="4" fill="#FFD700" opacity="0.8"/>
+  <rect x="150" y="100" width="30" height="30" rx="4" fill="#FFD700" opacity="0.8"/>
+  <!-- Door -->
+  <path d="M105 100h30v40h-30z" fill="#4A3AFF" opacity="0.4"/>
+  <circle cx="127" cy="120" r="2" fill="#FFD700"/>
+  <!-- Snow on roof -->
+  <path d="M30 75c0 0 20-10 40-10s40 10 40 10s20-10 40-10s40 10 40 10" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  <!-- Rain drops -->
+  <g opacity="0.6">
+    <path d="M50 40l-5 10M80 30l-5 10M110 25l-5 10M140 30l-5 10M170 40l-5 10" stroke="#4FC3F7" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg> 

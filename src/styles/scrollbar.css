@@ -1,0 +1,117 @@
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+
+/* Base scrolling behavior */
+.hide-scrollbar {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+}
+
+/* Desktop scrolling behavior */
+@media (min-width: 768px) {
+  .hide-scrollbar {
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .hide-scrollbar:hover {
+    cursor: grab;
+  }
+
+  .hide-scrollbar:active {
+    cursor: grabbing;
+  }
+}
+
+/* Touch device behavior */
+.touch-pan-x {
+  touch-action: pan-x;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Snap scrolling */
+.snap-x {
+  scroll-snap-type: x mandatory;
+  scroll-padding: 1rem;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
+
+/* Prevent text selection while scrolling */
+.select-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Enable smooth scrolling on all devices */
+* {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Enable horizontal scroll with mousewheel */
+.horizontal-scroll {
+  scroll-snap-type: x mandatory;
+  scroll-padding: 1rem;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  cursor: grab;
+  display: block;
+  white-space: nowrap;
+}
+
+.horizontal-scroll:active {
+  cursor: grabbing;
+}
+
+.horizontal-scroll > * {
+  white-space: normal;
+  scroll-snap-align: start;
+  display: inline-block;
+}
+
+/* Make sure the container allows for proper scrolling */
+.horizontal-scroll:hover {
+  cursor: grab;
+}
+
+/* Enable mousewheel scrolling */
+.horizontal-scroll {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 768px) {
+  .horizontal-scroll {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Add padding to ensure last item is fully visible */
+.horizontal-scroll-padding {
+  padding-right: calc(100% - 300px);
+} 
