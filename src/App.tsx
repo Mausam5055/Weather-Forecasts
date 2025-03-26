@@ -163,7 +163,9 @@ function App() {
                             <stop offset="100%" style={{ stopColor: '#ec4899' }} />
                           </linearGradient>
                         </defs>
-                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        <path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                        <path d="M16 16v0a3 3 0 003-3v-1a3 3 0 00-3-3v0" />
+                        <path d="M8 16v0a3 3 0 01-3-3v-1a3 3 0 013-3v0" />
                       </svg>
                     </div>
                     <h1 className="text-lg font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -200,19 +202,15 @@ function App() {
                     xmlns="http://www.w3.org/2000/svg" 
                     viewBox="0 0 24 24" 
                     fill="none" 
-                    stroke="url(#gradient)" 
-                    className="w-7 h-7"
+                    stroke="currentColor" 
+                    className="w-7 h-7 text-purple-400"
                     strokeWidth="2"
                     strokeLinecap="round" 
                     strokeLinejoin="round"
                   >
-                    <defs>
-                      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style={{ stopColor: '#a78bfa' }} />
-                        <stop offset="100%" style={{ stopColor: '#ec4899' }} />
-                      </linearGradient>
-                    </defs>
-                    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    <path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                    <path d="M16 16v0a3 3 0 003-3v-1a3 3 0 00-3-3v0" />
+                    <path d="M8 16v0a3 3 0 01-3-3v-1a3 3 0 013-3v0" />
                   </svg>
                 </div>
                 <div>
