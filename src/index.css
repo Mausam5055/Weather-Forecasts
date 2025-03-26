@@ -153,9 +153,10 @@ body {
 
 /* Transitions */
 .transition-all {
-  transition-property: all;
+  transition-property: transform, opacity, background-color;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+  transition-duration: 200ms;
+  will-change: transform, opacity, background-color;
 }
 
 /* Responsive text */
@@ -178,11 +179,13 @@ body {
 
 /* Hover effects */
 .hover\:scale-105:hover {
-  transform: scale(1.05);
+  transform: scale(1.05) translateZ(0);
+  -webkit-transform: scale(1.05) translateZ(0);
 }
 
 .active\:scale-95:active {
-  transform: scale(0.95);
+  transform: scale(0.95) translateZ(0);
+  -webkit-transform: scale(0.95) translateZ(0);
 }
 
 /* Custom utilities */
@@ -206,4 +209,72 @@ body {
   -webkit-text-fill-color: transparent;
   animation: gradient 8s linear infinite;
   background-size: 200% auto;
+}
+
+/* Optimize animations with hardware acceleration */
+.animate-gradient,
+.animate-float,
+.animate-float-reverse,
+.animate-float-slow,
+.animate-fade-in,
+.animate-slide-up,
+.animate-bounce,
+.animate-spin {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Reduce motion on mobile */
+@media (prefers-reduced-motion: reduce) {
+  .animate-gradient,
+  .animate-float,
+  .animate-float-reverse,
+  .animate-float-slow,
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-bounce,
+  .animate-spin,
+  .glass-effect,
+  .transition-all,
+  .hover\:scale-105:hover,
+  .active\:scale-95:active {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Optimize scrollbar for mobile */
+@media (max-width: 640px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 8s ease-in-out infinite;
+  }
+
+  .animate-bounce {
+    animation: bounce 1.5s ease-in-out infinite;
+  }
+
+  /* Reduce blur effect on mobile for better performance */
+  .glass-effect {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+/* Add touch feedback for mobile */
+@media (hover: none) {
+  .hover\:scale-105:hover {
+    transform: none;
+  }
+  
+  .active\:scale-95:active {
+    transform: scale(0.98);
+  }
 }
