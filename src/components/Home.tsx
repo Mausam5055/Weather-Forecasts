@@ -110,7 +110,7 @@ export const Home: React.FC<HomeProps> = ({ onSearch, onUseLocation }) => {
         playsInline
         className="absolute inset-0 w-full h-full object-cover opacity-50"
       >
-        <source src="/src/assets/weather-bg.mp4" type="video/mp4" />
+        <source src="/assets/weather-bg.mp4" type="video/mp4" />
       </video>
 
       {/* Dark Overlay */}
