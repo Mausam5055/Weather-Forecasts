@@ -6,6 +6,7 @@ import { WelcomeScreen } from './components/WelcomeScreen';
 import { Home } from './components/Home';
 import { AISuggestions } from './components/AISuggestions';
 import { ThemeToggle } from './components/ThemeToggle';
+import { TemperatureCurve } from './components/TemperatureCurve';
 import { WeatherData } from './types/weather';
 import { Loader2 } from 'lucide-react';
 import './styles/scrollbar.css';
@@ -388,6 +389,14 @@ function App() {
                     onToggleTheme={toggleTheme}
                   />
                   
+                  {/* Temperature Curve - Both Mobile and Desktop */}
+                  <div>
+                    <TemperatureCurve 
+                      hourlyData={weather.forecast.forecastday[0].hour}
+                      darkMode={darkMode}
+                    />
+                  </div>
+
                   {/* Search Another City - Mobile Only */}
                   <div className="block md:hidden">
                     <div className="bg-white dark:bg-[#111111] rounded-3xl p-6 text-gray-900 dark:text-white backdrop-blur-lg border border-gray-200 dark:border-white/5 shadow-2xl hover:bg-gray-50 dark:hover:bg-[#161616] transition-all duration-300">
