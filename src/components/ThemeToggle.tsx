@@ -34,7 +34,12 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = memo(({ darkMode, onToggl
       <motion.div
         initial={{ rotate: 0 }}
         animate={{ rotate: darkMode ? 180 : 0 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
+        transition={{ 
+          duration: 0.2,
+          ease: "easeInOut",
+          type: "spring",
+          stiffness: 300
+        }}
         className="theme-transition"
       >
         {darkMode ? (

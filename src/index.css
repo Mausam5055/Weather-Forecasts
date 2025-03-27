@@ -52,6 +52,54 @@ body {
   transition: none !important;
 }
 
+/* Mobile-optimized theme transitions */
+@media (max-width: 640px) {
+  /* Reduce transition duration on mobile */
+  .theme-transition {
+    transition-duration: 100ms;
+  }
+
+  /* Disable transitions for less important elements on mobile */
+  .glass-effect,
+  .bg-gradient-to-br,
+  .bg-gradient-to-r,
+  .bg-gradient-to-t,
+  .hover\:bg-white\/60,
+  .hover\:bg-black\/40,
+  .hover\:border-gray-300,
+  .hover\:border-white\/20,
+  .hover\:text-gray-900,
+  .hover\:text-white,
+  .group-hover\:rotate-180,
+  .group-hover\:text-purple-400,
+  .group-hover\:blur-2xl {
+    transition: none !important;
+  }
+
+  /* Only keep essential transitions */
+  .theme-transition {
+    transition-property: background-color, color;
+  }
+
+  /* Optimize backdrop blur for mobile */
+  .backdrop-blur-lg {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Reduce animation complexity */
+  .animate-gradient,
+  .animate-float,
+  .animate-float-reverse,
+  .animate-float-slow,
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-bounce,
+  .animate-spin {
+    animation: none !important;
+  }
+}
+
 :root {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
