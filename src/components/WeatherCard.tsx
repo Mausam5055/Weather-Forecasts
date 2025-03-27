@@ -2,12 +2,19 @@ import React from 'react';
 import { WeatherData } from '../types/weather';
 import { Wind, Droplets } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { ThemeToggle } from './ThemeToggle';
 
 interface WeatherCardProps {
   weather: WeatherData;
+  darkMode: boolean;
+  onToggleTheme: () => void;
 }
 
-export const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
+export const WeatherCard: React.FC<WeatherCardProps> = ({ 
+  weather,
+  darkMode,
+  onToggleTheme 
+}) => {
   const current = weather.current;
 
   // Get weather icon path
@@ -39,6 +46,16 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
       transition={{ duration: 0.5 }}
       className="rounded-3xl p-6 md:p-8 text-gray-900 dark:text-white bg-white dark:bg-[#111111] backdrop-blur-xl shadow-2xl border border-gray-200 dark:border-white/5 hover:bg-gray-50 dark:hover:bg-[#161616] transition-all duration-300"
     >
+      {/* Theme Toggle Button */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="absolute top-6 right-6 z-50 md:top-8 md:right-8"
+      >
+        <ThemeToggle darkMode={darkMode} onToggle={onToggleTheme} />
+      </motion.div>
+
       <div className="text-center mb-8 relative">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-100/50 to-pink-100/30 dark:from-purple-500/10 dark:to-pink-500/5 rounded-3xl blur-2xl"></div>
         <div className="relative z-10">

@@ -2,11 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import { SearchBar } from './SearchBar';
 import { MapPin, Sun, Moon, Cloud, Wind, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ThemeToggle } from './ThemeToggle';
 import weatherHouse from '../assets/weather-house.svg';
 
 interface HomeProps {
   onSearch: (query: string) => void;
   onUseLocation: () => void;
+  darkMode: boolean;
+  onToggleTheme: () => void;
 }
 
 interface Suggestion {
@@ -14,7 +17,12 @@ interface Suggestion {
   country: string;
 }
 
-export const Home: React.FC<HomeProps> = ({ onSearch, onUseLocation }) => {
+export const Home: React.FC<HomeProps> = ({ 
+  onSearch, 
+  onUseLocation,
+  darkMode,
+  onToggleTheme 
+}) => {
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -115,6 +123,16 @@ export const Home: React.FC<HomeProps> = ({ onSearch, onUseLocation }) => {
       transition={{ duration: isMobile ? 0.4 : 0.8 }}
       className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden bg-white dark:bg-black"
     >
+      {/* Theme Toggle Button */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="fixed top-6 right-6 z-50 md:top-8 md:right-8"
+      >
+        <ThemeToggle darkMode={darkMode} onToggle={onToggleTheme} />
+      </motion.div>
+
       {/* Video Background - Only load on desktop */}
       {!isMobile && (
         <video

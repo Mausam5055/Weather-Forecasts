@@ -179,7 +179,12 @@ function App() {
 
   // Show home screen when searching or on error
   if (!weather || error) {
-    return <Home onSearch={fetchWeather} onUseLocation={handleGetStarted} />;
+    return <Home 
+      onSearch={fetchWeather} 
+      onUseLocation={handleGetStarted}
+      darkMode={darkMode}
+      onToggleTheme={toggleTheme}
+    />;
   }
 
   // Show weather dashboard
@@ -377,7 +382,11 @@ function App() {
                 {/* Left Column - Main Weather */}
                 <div className="md:col-span-8 space-y-6">
                   {/* Main Weather Card */}
-                  <WeatherCard weather={weather} />
+                  <WeatherCard 
+                    weather={weather}
+                    darkMode={darkMode}
+                    onToggleTheme={toggleTheme}
+                  />
                   
                   {/* Search Another City - Mobile Only */}
                   <div className="block md:hidden">
