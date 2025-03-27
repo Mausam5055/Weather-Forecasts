@@ -20,6 +20,30 @@
   width: 100%;
 }
 
+/* Global scrollbar hiding */
+html {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important;  /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, Opera */
+  width: 0 !important;
+  height: 0 !important;
+}
+
+body {
+  overflow-y: scroll !important; /* Keep scrolling functionality */
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+body::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
 /* Desktop scrolling behavior */
 @media (min-width: 768px) {
   .hide-scrollbar {

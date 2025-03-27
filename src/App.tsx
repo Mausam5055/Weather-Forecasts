@@ -190,7 +190,7 @@ function App() {
 
   // Show weather dashboard
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white theme-transition">
+    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white theme-transition overflow-y-auto hide-scrollbar">
       {/* Background Gradient */}
       <div className="fixed inset-0 bg-gradient-to-br from-purple-100/50 via-white to-pink-100/50 dark:from-purple-900/10 dark:via-black dark:to-pink-900/10 pointer-events-none theme-transition" />
       
