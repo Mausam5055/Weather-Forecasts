@@ -215,28 +215,47 @@ function App() {
                         <path d="M8 16v0a3 3 0 01-3-3v-1a3 3 0 013-3v0" />
                       </svg>
                     </div>
-                    <h1 className="text-lg font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    <h1 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                       Weather ForeCasts
                     </h1>
                   </div>
                   
-                  {/* Mobile Refresh Button */}
-                  {weather && (
-                    <button 
-                      onClick={() => fetchWeather(weather.location.name)}
+                  {/* Mobile Actions */}
+                  <div className="flex items-center gap-3">
+                    {/* Theme Toggle Button */}
+                    <button
+                      onClick={toggleTheme}
                       className="group bg-white/50 dark:bg-black/30 hover:bg-white/60 dark:hover:bg-black/40 p-2 rounded-lg text-gray-800 dark:text-white/80 hover:text-gray-900 dark:hover:text-white border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300"
                     >
-                      <svg 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        viewBox="0 0 24 24" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                      </svg>
+                      {darkMode ? (
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                      ) : (
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                      )}
                     </button>
-                  )}
+
+                    {/* Refresh Button */}
+                    {weather && (
+                      <button 
+                        onClick={() => fetchWeather(weather.location.name)}
+                        className="group bg-white/50 dark:bg-black/30 hover:bg-white/60 dark:hover:bg-black/40 p-2 rounded-lg text-gray-800 dark:text-white/80 hover:text-gray-900 dark:hover:text-white border border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300"
+                      >
+                        <svg 
+                          xmlns="http://www.w3.org/2000/svg" 
+                          viewBox="0 0 24 24" 
+                          fill="none" 
+                          stroke="currentColor" 
+                          className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -314,32 +333,32 @@ function App() {
             <div className="animate-fade-in">
               {/* Centered Location Header for Both Mobile and Desktop */}
               <div className="text-center mb-8">
-                <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                <h1 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                   {weather.location.name}
                 </h1>
-                <div className="text-xl md:text-2xl text-gray-600 dark:text-white/60 mt-1">
+                <div className="text-lg md:text-2xl text-gray-600 dark:text-white/60 mt-1">
                   {weather.location.country}
                 </div>
                 <div className="flex flex-wrap items-center justify-center gap-3 mt-3">
-                  <div className="flex items-center gap-2 text-gray-700 dark:text-white/60 text-sm md:text-base bg-white/50 dark:bg-[#1A1A1A] px-4 py-2 rounded-full border border-gray-200 dark:border-white/5 hover:bg-white/60 dark:hover:bg-[#202020] transition-all duration-300">
+                  <div className="flex items-center gap-2 text-gray-700 dark:text-white/60 text-base md:text-base bg-white/50 dark:bg-[#1A1A1A] px-4 py-2 rounded-full border border-gray-200 dark:border-white/5 hover:bg-white/60 dark:hover:bg-[#202020] transition-all duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-yellow-500 dark:text-yellow-400">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                     </svg>
                     Max: {Math.round(weather.forecast.forecastday[0].day.maxtemp_c)}°
                   </div>
-                  <div className="flex items-center gap-2 text-gray-700 dark:text-white/60 text-sm md:text-base bg-white/50 dark:bg-[#1A1A1A] px-4 py-2 rounded-full border border-gray-200 dark:border-white/5 hover:bg-white/60 dark:hover:bg-[#202020] transition-all duration-300">
+                  <div className="flex items-center gap-2 text-gray-700 dark:text-white/60 text-base md:text-base bg-white/50 dark:bg-[#1A1A1A] px-4 py-2 rounded-full border border-gray-200 dark:border-white/5 hover:bg-white/60 dark:hover:bg-[#202020] transition-all duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-blue-500 dark:text-blue-400">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12l-6.172-6.172a4 4 0 00-5.656 0L2 12m0 0l6.172 6.172a4 4 0 005.656 0L20 12m0 0l-2.172-2.172M20 12l-2.172 2.172" />
                     </svg>
                     Min: {Math.round(weather.forecast.forecastday[0].day.mintemp_c)}°
                   </div>
-                  <div className="flex items-center gap-2 text-gray-700 dark:text-white/60 text-sm md:text-base bg-white/50 dark:bg-[#1A1A1A] px-4 py-2 rounded-full border border-gray-200 dark:border-white/5 hover:bg-white/60 dark:hover:bg-[#202020] transition-all duration-300">
+                  <div className="flex items-center gap-2 text-gray-700 dark:text-white/60 text-base md:text-base bg-white/50 dark:bg-[#1A1A1A] px-4 py-2 rounded-full border border-gray-200 dark:border-white/5 hover:bg-white/60 dark:hover:bg-[#202020] transition-all duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-purple-500 dark:text-purple-400">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     {new Date(weather.location.localtime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </div>
-                  <div className="flex items-center gap-2 text-gray-700 dark:text-white/60 text-sm md:text-base bg-white/50 dark:bg-[#1A1A1A] px-4 py-2 rounded-full border border-gray-200 dark:border-white/5 hover:bg-white/60 dark:hover:bg-[#202020] transition-all duration-300">
+                  <div className="flex items-center gap-2 text-gray-700 dark:text-white/60 text-base md:text-base bg-white/50 dark:bg-[#1A1A1A] px-4 py-2 rounded-full border border-gray-200 dark:border-white/5 hover:bg-white/60 dark:hover:bg-[#202020] transition-all duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-pink-500 dark:text-pink-400">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
