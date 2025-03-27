@@ -143,7 +143,7 @@ export const Home: React.FC<HomeProps> = ({
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-50"
+          className="absolute inset-0 w-full h-full object-cover opacity-70 dark:opacity-40"
         >
           <source src="/assets/weather-bg.mp4" type="video/mp4" />
         </video>
@@ -154,7 +154,7 @@ export const Home: React.FC<HomeProps> = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: isMobile ? 0.5 : 1 }}
-        className="absolute inset-0 bg-gradient-to-br from-white/80 dark:from-black/60 via-white/60 dark:via-black/40 to-white/80 dark:to-black/60"
+        className="absolute inset-0 bg-gradient-to-br from-white/60 dark:from-black/40 via-white/40 dark:via-black/20 to-white/60 dark:to-black/40"
       ></motion.div>
       
       {/* Animated particles - Simplified on mobile */}
