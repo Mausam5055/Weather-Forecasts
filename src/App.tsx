@@ -553,53 +553,53 @@ function App() {
                   </div>
 
                   {/* Weather Tips Card */}
-                  <div className="bg-white dark:bg-[#111111] rounded-3xl p-8 text-gray-900 dark:text-white backdrop-blur-lg border border-gray-200 dark:border-white/5 shadow-2xl hover:bg-gray-50 dark:hover:bg-[#161616] transition-all duration-300">
+                  <div className="bg-white dark:bg-[#111111] rounded-3xl p-6 md:p-8 text-gray-900 dark:text-white backdrop-blur-lg border border-gray-200 dark:border-white/5 shadow-2xl hover:bg-gray-50 dark:hover:bg-[#161616] transition-all duration-300">
                     <h2 className="text-xl font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">
                       Weather Tips
                     </h2>
-                    <div className="grid grid-cols-2 gap-6">
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-lg bg-green-500/10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                      <div className="flex items-start gap-4 bg-gray-50/50 dark:bg-gray-800/5 rounded-2xl p-4 border border-gray-200 dark:border-white/5">
+                        <div className="p-3 rounded-lg bg-green-500/10 flex-shrink-0">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-6 h-6 text-green-500">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                         </div>
-                        <div>
-                          <h3 className="text-base font-medium text-gray-900 dark:text-white/90">Outdoor Activity</h3>
-                          <p className="text-sm text-gray-600 dark:text-white/60 mt-1">Great conditions for walking or cycling</p>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-base font-medium text-gray-900 dark:text-white/90 mb-1">Outdoor Activity</h3>
+                          <p className="text-sm text-gray-600 dark:text-white/60">Great conditions for walking or cycling</p>
                         </div>
                       </div>
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-lg bg-purple-500/10">
+                      <div className="flex items-start gap-4 bg-gray-50/50 dark:bg-gray-800/5 rounded-2xl p-4 border border-gray-200 dark:border-white/5">
+                        <div className="p-3 rounded-lg bg-purple-500/10 flex-shrink-0">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-6 h-6 text-purple-500">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
                           </svg>
                         </div>
-                        <div>
-                          <h3 className="text-base font-medium text-gray-900 dark:text-white/90">Air Quality</h3>
-                          <p className="text-sm text-gray-600 dark:text-white/60 mt-1">Fresh air, perfect for ventilation</p>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-base font-medium text-gray-900 dark:text-white/90 mb-1">Air Quality</h3>
+                          <p className="text-sm text-gray-600 dark:text-white/60">Fresh air, perfect for ventilation</p>
                         </div>
                       </div>
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-lg bg-yellow-500/10">
+                      <div className="flex items-start gap-4 bg-gray-50/50 dark:bg-gray-800/5 rounded-2xl p-4 border border-gray-200 dark:border-white/5">
+                        <div className="p-3 rounded-lg bg-yellow-500/10 flex-shrink-0">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-6 h-6 text-yellow-500">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                           </svg>
                         </div>
-                        <div>
-                          <h3 className="text-base font-medium text-gray-900 dark:text-white/90">UV Protection</h3>
-                          <p className="text-sm text-gray-600 dark:text-white/60 mt-1">Moderate UV levels, use sunscreen</p>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-base font-medium text-gray-900 dark:text-white/90 mb-1">UV Protection</h3>
+                          <p className="text-sm text-gray-600 dark:text-white/60">Moderate UV levels, use sunscreen</p>
                         </div>
                       </div>
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-lg bg-blue-500/10">
+                      <div className="flex items-start gap-4 bg-gray-50/50 dark:bg-gray-800/5 rounded-2xl p-4 border border-gray-200 dark:border-white/5">
+                        <div className="p-3 rounded-lg bg-blue-500/10 flex-shrink-0">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-6 h-6 text-blue-500">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                           </svg>
                         </div>
-                        <div>
-                          <h3 className="text-base font-medium text-gray-900 dark:text-white/90">Wind Advisory</h3>
-                          <p className="text-sm text-gray-600 dark:text-white/60 mt-1">Light breeze, ideal for outdoor dining</p>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-base font-medium text-gray-900 dark:text-white/90 mb-1">Wind Advisory</h3>
+                          <p className="text-sm text-gray-600 dark:text-white/60">Light breeze, ideal for outdoor dining</p>
                         </div>
                       </div>
                     </div>
