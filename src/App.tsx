@@ -890,7 +890,7 @@ function App() {
               <footer className="relative mt-12">
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-50 dark:from-gray-800/5 via-gray-200 dark:via-gray-800/25 to-transparent pointer-events-none" />
                 
-                <div className="relative border-t border-gray-200 dark:border-white/5">
+                <div className="relative border-t border-gray-200 dark:border-white/10">
                   <div className="container mx-auto px-4 py-12">
                     {/* Footer Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 mb-8">
@@ -1096,30 +1096,30 @@ function App() {
 
                     {/* Bottom Bar */}
                     <div className="pt-8 mt-8 border-t border-gray-200 dark:border-white/10">
-                      <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                      <div className="flex flex-col-reverse items-center gap-6 md:flex-row md:justify-between">
+                        {/* Copyright */}
+                        <div className="text-gray-500 dark:text-white/50 text-sm text-center md:text-right">
+                          © {new Date().getFullYear()} Weather ForeCasts. All Rights Reserved
+                        </div>
+
                         {/* Author Info with Photo */}
-                        <div className="flex items-center gap-4 order-2 md:order-1">
+                        <div className="flex items-center gap-3">
                           <div className="relative group">
                             {/* Glow Effect */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                            <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
                             
                             {/* Photo Container */}
                             <div className="relative bg-gradient-to-br from-purple-500/5 to-pink-500/5 dark:from-purple-500/10 dark:to-pink-500/10 border border-purple-200/20 dark:border-purple-500/20 rounded-xl overflow-hidden">
                               <img
                                 src="/avatar.jpg"
                                 alt="Mausam Kar"
-                                className="w-12 h-12 object-cover"
+                                className="w-10 h-10 object-cover"
                               />
                             </div>
                           </div>
                           <div className="text-gray-600 dark:text-white/60 text-base">
                             Created with <span className="text-red-500">❤️</span> by <span className="text-gray-800 dark:text-white/90 font-medium">Mausam Kar</span>
                           </div>
-                        </div>
-
-                        {/* Copyright */}
-                        <div className="text-gray-500 dark:text-white/50 text-sm text-center md:text-right order-1 md:order-2">
-                          © {new Date().getFullYear()} Weather ForeCasts. All Rights Reserved
                         </div>
                       </div>
                     </div>
