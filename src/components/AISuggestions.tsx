@@ -150,7 +150,7 @@ export const AISuggestions: React.FC<AISuggestionsProps> = ({ weather }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-[#111111] rounded-3xl p-6 backdrop-blur-xl border border-white/5 shadow-2xl hover:bg-[#161616] transition-all duration-300"
+      className="bg-white dark:bg-[#111111] rounded-3xl p-6 backdrop-blur-xl border border-gray-200 dark:border-white/5 shadow-2xl hover:bg-gray-50 dark:hover:bg-[#161616] transition-all duration-300"
     >
       <div className="flex items-center gap-2 mb-6">
         <Sparkles className="w-6 h-6 text-yellow-400" />
@@ -165,17 +165,17 @@ export const AISuggestions: React.FC<AISuggestionsProps> = ({ weather }) => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="bg-[#1A1A1A] rounded-2xl p-4 backdrop-blur-lg border border-white/5 hover:bg-[#202020] transition-all duration-300"
+            className="bg-gray-50 dark:bg-[#1A1A1A] rounded-2xl p-4 backdrop-blur-lg border border-gray-200 dark:border-white/5 hover:bg-gray-100 dark:hover:bg-[#202020] transition-all duration-300"
           >
             <div className="flex items-center gap-3 mb-2">
               <div className={suggestion.color}>
                 {suggestion.icon}
               </div>
-              <h4 className="font-medium text-white/90">
+              <h4 className="font-medium text-gray-900 dark:text-white/90">
                 {suggestion.title}
               </h4>
             </div>
-            <p className="text-sm text-white/70 ml-8">
+            <p className="text-sm text-gray-600 dark:text-white/70 ml-8">
               {suggestion.text}
             </p>
           </motion.div>

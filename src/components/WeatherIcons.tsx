@@ -37,7 +37,7 @@ export const WeatherIcon: React.FC<WeatherIconProps> = ({ condition, isDay, clas
   };
 
   return (
-    <div className={`${className} flex items-center justify-center text-white`}>
+    <div className={`${className} flex items-center justify-center text-gray-900 dark:text-white`}>
       {getWeatherIcon()}
     </div>
   );

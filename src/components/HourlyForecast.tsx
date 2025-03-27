@@ -47,8 +47,8 @@ export const HourlyForecast: React.FC<HourlyForecastProps> = ({ forecast }) => {
 
     return (
       <div className="flex flex-col">
-        <span className="text-xs text-white/40">{dateText}</span>
-        <span className="text-sm font-medium text-white/60">
+        <span className="text-xs text-gray-500 dark:text-white/40">{dateText}</span>
+        <span className="text-sm font-medium text-gray-600 dark:text-white/60">
           {time.toLocaleTimeString('en-US', {
             hour: 'numeric',
             minute: '2-digit',
@@ -86,7 +86,7 @@ export const HourlyForecast: React.FC<HourlyForecastProps> = ({ forecast }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="mt-6 bg-[#111111] rounded-3xl p-4 md:p-6 backdrop-blur-xl border border-white/5 shadow-2xl hover:bg-[#161616] transition-all duration-300"
+      className="mt-6 bg-white dark:bg-[#111111] rounded-3xl p-4 md:p-6 backdrop-blur-xl border border-gray-200 dark:border-white/5 shadow-2xl hover:bg-gray-50 dark:hover:bg-[#161616] transition-all duration-300"
     >
       <div className="text-lg md:text-xl font-semibold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
         Today's Forecast
@@ -103,11 +103,11 @@ export const HourlyForecast: React.FC<HourlyForecastProps> = ({ forecast }) => {
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-[#1A1A1A] rounded-2xl p-4 text-white backdrop-blur-lg border border-white/5 hover:bg-[#202020] transition-all duration-300 snap-start"
+                className="bg-gray-50 dark:bg-[#1A1A1A] rounded-2xl p-4 text-gray-900 dark:text-white backdrop-blur-lg border border-gray-200 dark:border-white/5 hover:bg-gray-100 dark:hover:bg-[#202020] transition-all duration-300 snap-start"
               >
                 <div className="flex items-center justify-between mb-4">
                   {formatTime(hour.time)}
-                  <div className="text-sm font-medium text-white/40">
+                  <div className="text-sm font-medium text-gray-500 dark:text-white/40">
                     Feels {Math.round(hour.feelslike_c)}°
                   </div>
                 </div>
@@ -130,16 +130,16 @@ export const HourlyForecast: React.FC<HourlyForecastProps> = ({ forecast }) => {
                 <div className="grid grid-cols-2 gap-2 mt-2">
                   <div className="flex items-center gap-1">
                     <Droplets className="w-4 h-4 text-blue-400" />
-                    <span className="text-sm text-white/60">{hour.humidity}%</span>
+                    <span className="text-sm text-gray-600 dark:text-white/60">{hour.humidity}%</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Wind className="w-4 h-4 text-purple-400" />
-                    <span className="text-sm text-white/60">{Math.round(hour.wind_kph)} km/h</span>
+                    <span className="text-sm text-gray-600 dark:text-white/60">{Math.round(hour.wind_kph)} km/h</span>
                   </div>
                 </div>
 
                 {hour.chance_of_rain > 0 && (
-                  <div className="mt-3 text-sm text-blue-400/80">
+                  <div className="mt-3 text-sm text-blue-400">
                     {hour.chance_of_rain}% chance of rain
                   </div>
                 )}

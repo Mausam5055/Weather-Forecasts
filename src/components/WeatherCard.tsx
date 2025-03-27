@@ -37,10 +37,10 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="rounded-3xl p-6 md:p-8 text-white bg-[#111111] backdrop-blur-xl shadow-2xl border border-white/5 hover:bg-[#161616] transition-all duration-300"
+      className="rounded-3xl p-6 md:p-8 text-gray-900 dark:text-white bg-white dark:bg-[#111111] backdrop-blur-xl shadow-2xl border border-gray-200 dark:border-white/5 hover:bg-gray-50 dark:hover:bg-[#161616] transition-all duration-300"
     >
       <div className="text-center mb-8 relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/5 rounded-3xl blur-2xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-100/50 to-pink-100/30 dark:from-purple-500/10 dark:to-pink-500/5 rounded-3xl blur-2xl"></div>
         <div className="relative z-10">
           <motion.div 
             initial={{ scale: 0.8, opacity: 0 }}
@@ -51,7 +51,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
             <motion.img
               src={getWeatherIcon(current.condition.text, current.is_day === 1)}
               alt={current.condition.text}
-              className="w-full h-full text-white filter brightness-125"
+              className="w-full h-full text-gray-900 dark:text-white filter brightness-125"
               title={current.condition.text}
             />
           </motion.div>
@@ -67,7 +67,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-xl md:text-2xl mb-2 font-medium text-white/90"
+            className="text-xl md:text-2xl mb-2 font-medium text-gray-900 dark:text-white/90"
           >
             {current.condition.text}
           </motion.div>
@@ -75,7 +75,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="text-base md:text-lg text-white/60"
+            className="text-base md:text-lg text-gray-600 dark:text-white/60"
           >
             Feels like {Math.round(current.feelslike_c)}°
           </motion.div>
@@ -87,16 +87,16 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="bg-[#1A1A1A] rounded-2xl p-4 md:p-6 backdrop-blur-lg border border-white/5 hover:bg-[#202020] transition-all duration-300"
+          className="bg-gray-50 dark:bg-[#1A1A1A] rounded-2xl p-4 md:p-6 backdrop-blur-lg border border-gray-200 dark:border-white/5 hover:bg-gray-100 dark:hover:bg-[#202020] transition-all duration-300"
         >
           <div className="flex items-center gap-3 mb-3">
             <Wind className="w-6 h-6 text-purple-400" />
-            <span className="text-base text-white/80 font-medium">Wind</span>
+            <span className="text-base text-gray-800 dark:text-white/80 font-medium">Wind</span>
           </div>
-          <div className="text-xl md:text-2xl font-bold mb-1 text-white">
+          <div className="text-xl md:text-2xl font-bold mb-1 text-gray-900 dark:text-white">
             {Math.round(current.wind_kph)} km/h
           </div>
-          <div className="text-sm text-white/40">
+          <div className="text-sm text-gray-500 dark:text-white/40">
             Direction: {current.wind_dir}
           </div>
         </motion.div>
@@ -105,16 +105,16 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ weather }) => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.7 }}
-          className="bg-[#1A1A1A] rounded-2xl p-4 md:p-6 backdrop-blur-lg border border-white/5 hover:bg-[#202020] transition-all duration-300"
+          className="bg-gray-50 dark:bg-[#1A1A1A] rounded-2xl p-4 md:p-6 backdrop-blur-lg border border-gray-200 dark:border-white/5 hover:bg-gray-100 dark:hover:bg-[#202020] transition-all duration-300"
         >
           <div className="flex items-center gap-3 mb-3">
             <Droplets className="w-6 h-6 text-pink-400" />
-            <span className="text-base text-white/80 font-medium">Humidity</span>
+            <span className="text-base text-gray-800 dark:text-white/80 font-medium">Humidity</span>
           </div>
-          <div className="text-xl md:text-2xl font-bold mb-1 text-white">
+          <div className="text-xl md:text-2xl font-bold mb-1 text-gray-900 dark:text-white">
             {current.humidity}%
           </div>
-          <div className="text-sm text-white/40">
+          <div className="text-sm text-gray-500 dark:text-white/40">
             {current.humidity < 30 ? 'Low' : 
              current.humidity < 60 ? 'Normal' : 'High'}
           </div>

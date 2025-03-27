@@ -113,7 +113,7 @@ export const Home: React.FC<HomeProps> = ({ onSearch, onUseLocation }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: isMobile ? 0.4 : 0.8 }}
-      className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden bg-black"
+      className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden bg-white dark:bg-black"
     >
       {/* Video Background - Only load on desktop */}
       {!isMobile && (
@@ -134,44 +134,43 @@ export const Home: React.FC<HomeProps> = ({ onSearch, onUseLocation }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: isMobile ? 0.5 : 1 }}
-        className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/60"
+        className="absolute inset-0 bg-gradient-to-br from-white/80 dark:from-black/60 via-white/60 dark:via-black/40 to-white/80 dark:to-black/60"
       ></motion.div>
       
       {/* Animated particles - Simplified on mobile */}
-      <div className="absolute inset-0 overflow-hidden">
-        {!isMobile ? (
-          <>
-            <motion.div 
-              animate={{ 
-                scale: [1, 1.2, 1],
-                opacity: [0.15, 0.25, 0.15]
+      {!isMobile && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="absolute inset-0 overflow-hidden"
+        >
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              initial={{ 
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                scale: Math.random() * 0.5 + 0.5,
+                opacity: Math.random() * 0.5 + 0.2
               }}
-              transition={{ 
-                duration: 8,
+              animate={{
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                scale: Math.random() * 0.5 + 0.5,
+                opacity: Math.random() * 0.5 + 0.2
+              }}
+              transition={{
+                duration: Math.random() * 10 + 10,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "linear"
               }}
-              className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
-            ></motion.div>
-            <motion.div 
-              animate={{ 
-                scale: [1.2, 1, 1.2],
-                opacity: [0.1, 0.15, 0.1]
-              }}
-              transition={{ 
-                duration: 10,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-3xl"
-            ></motion.div>
-          </>
-        ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5" />
-        )}
-      </div>
+              className="absolute w-1 h-1 bg-purple-400/30 dark:bg-purple-400/10 rounded-full"
+            />
+          ))}
+        </motion.div>
+      )}
 
-      {/* Content Container */}
       <div className="relative z-10 w-full max-w-4xl flex flex-col items-center">
         {/* Weather House - Simplified animation on mobile */}
         <motion.div
@@ -213,7 +212,7 @@ export const Home: React.FC<HomeProps> = ({ onSearch, onUseLocation }) => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: isMobile ? 0.4 : 0.8, delay: isMobile ? 0.2 : 0.4 }}
-          className="text-5xl font-bold text-white text-center mb-4"
+          className="text-5xl font-bold text-gray-900 dark:text-white text-center mb-4"
         >
           Weather<span className="text-purple-400">App</span>
         </motion.h1>
@@ -222,64 +221,30 @@ export const Home: React.FC<HomeProps> = ({ onSearch, onUseLocation }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: isMobile ? 0.4 : 0.8, delay: isMobile ? 0.3 : 0.5 }}
-          className="text-white/70 text-lg text-center mb-8 max-w-md"
+          className="text-gray-600 dark:text-white/70 text-lg text-center mb-8 max-w-md"
         >
           Get accurate weather forecasts for any location worldwide
         </motion.p>
 
-        {/* Search section - Faster animation on mobile */}
+        {/* Search Bar and Location Button */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: isMobile ? 0.4 : 0.8, delay: isMobile ? 0.4 : 0.6 }}
-          className="w-full max-w-md mb-8 relative"
+          className="w-full max-w-md mb-8"
         >
           <SearchBar 
             onSearch={onSearch}
-            onInputChange={fetchSuggestions}
-            onKeyDown={handleKeyDown}
-            placeholder="Search for a city..."
+            placeholder="Enter city name..."
             className="mb-6"
           />
-          
-          {/* Search Suggestions */}
-          <AnimatePresence>
-            {showSuggestions && suggestions.length > 0 && (
-              <motion.div
-                ref={suggestionsRef}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: isMobile ? 0.2 : 0.3 }}
-                className="absolute w-full bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl shadow-xl overflow-hidden z-50 mt-2"
-              >
-                {suggestions.map((suggestion, index) => (
-                  <motion.div
-                    key={`${suggestion.name}-${suggestion.country}`}
-                    whileHover={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
-                    className={`px-6 py-3 cursor-pointer flex items-center gap-3 ${
-                      index === selectedIndex ? 'bg-white/10' : ''
-                    }`}
-                    onClick={() => handleSearch(suggestion.name)}
-                  >
-                    <Search className="w-4 h-4 text-white/50" />
-                    <div>
-                      <p className="text-white font-medium">{suggestion.name}</p>
-                      <p className="text-white/50 text-sm">{suggestion.country}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
-
           <motion.button
             whileHover={{ scale: isMobile ? 1 : 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onUseLocation}
-            className="flex items-center gap-3 text-white/90 hover:text-white mx-auto
-                     bg-black/30 px-8 py-4 rounded-full backdrop-blur-xl border border-white/10 
-                     hover:bg-black/40 transition-all duration-300 shadow-lg"
+            className="flex items-center gap-3 text-gray-900 dark:text-white/90 hover:text-gray-900 dark:hover:text-white mx-auto
+                     bg-white/50 dark:bg-black/30 px-8 py-4 rounded-full backdrop-blur-xl border border-gray-200 dark:border-white/10 
+                     hover:bg-white/60 dark:hover:bg-black/40 transition-all duration-300 shadow-lg"
           >
             <MapPin 
               size={24} 
@@ -300,14 +265,14 @@ export const Home: React.FC<HomeProps> = ({ onSearch, onUseLocation }) => {
             <motion.div 
               key={stat}
               whileHover={{ scale: isMobile ? 1 : 1.02 }}
-              className="bg-black/30 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center"
+              className="bg-white/30 dark:bg-black/30 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl p-6 text-center"
             >
               {index === 0 && <Sun className="w-8 h-8 text-yellow-400 mx-auto mb-3" />}
               {index === 1 && <Cloud className="w-8 h-8 text-blue-400 mx-auto mb-3" />}
               {index === 2 && <Wind className="w-8 h-8 text-green-400 mx-auto mb-3" />}
               {index === 3 && <Moon className="w-8 h-8 text-purple-400 mx-auto mb-3" />}
-              <p className="text-white/70 text-sm mb-1">{stat}</p>
-              <p className="text-white text-2xl font-semibold">--{index === 2 ? ' km/h' : index === 3 ? '%' : '°C'}</p>
+              <p className="text-gray-600 dark:text-white/70 text-sm mb-1">{stat}</p>
+              <p className="text-gray-900 dark:text-white text-2xl font-semibold">--{index === 2 ? ' km/h' : index === 3 ? '%' : '°C'}</p>
             </motion.div>
           ))}
         </motion.div>
