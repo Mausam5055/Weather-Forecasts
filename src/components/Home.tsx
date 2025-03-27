@@ -10,6 +10,7 @@ interface HomeProps {
   onUseLocation: () => void;
   darkMode: boolean;
   onToggleTheme: () => void;
+  isWelcomeScreen?: boolean;
 }
 
 interface Suggestion {
@@ -21,7 +22,8 @@ export const Home: React.FC<HomeProps> = ({
   onSearch, 
   onUseLocation,
   darkMode,
-  onToggleTheme 
+  onToggleTheme,
+  isWelcomeScreen = false
 }) => {
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -241,7 +243,10 @@ export const Home: React.FC<HomeProps> = ({
           transition={{ duration: isMobile ? 0.4 : 0.8, delay: isMobile ? 0.3 : 0.5 }}
           className="text-gray-600 dark:text-white/70 text-lg text-center mb-8 max-w-md"
         >
-          Get accurate weather forecasts for any location worldwide
+          {isWelcomeScreen 
+            ? "Get real-time weather updates for any location with beautiful visualizations"
+            : "Get accurate weather forecasts for any location worldwide"
+          }
         </motion.p>
 
         {/* Search Bar and Location Button */}

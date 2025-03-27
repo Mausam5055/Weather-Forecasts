@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { WeatherCard } from './components/WeatherCard';
 import { HourlyForecast } from './components/HourlyForecast';
 import { WeeklyForecast } from './components/WeeklyForecast';
-import { WelcomeScreen } from './components/WelcomeScreen';
 import { Home } from './components/Home';
 import { AISuggestions } from './components/AISuggestions';
 import { ThemeToggle } from './components/ThemeToggle';
@@ -170,11 +169,12 @@ function App() {
 
   // Show welcome screen on first visit
   if (showWelcome) {
-    return <WelcomeScreen 
-      onGetStarted={handleGetStarted} 
+    return <Home 
       onSearch={fetchWeather} 
+      onUseLocation={handleGetStarted}
       darkMode={darkMode}
       onToggleTheme={toggleTheme}
+      isWelcomeScreen={true}
     />;
   }
 
