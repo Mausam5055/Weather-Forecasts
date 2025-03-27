@@ -26,19 +26,17 @@ export const TemperatureCurve: React.FC<TemperatureCurveProps> = ({ hourlyData, 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Filter data points for mobile view (show every 3 hours)
-  const filteredData = isMobile 
-    ? hourlyData.filter((_, index) => index % 3 === 0)
-    : hourlyData;
+  // Filter data points for labels (show every 3 hours)
+  const filteredData = hourlyData.filter((_, index) => index % 3 === 0);
 
   // Get min and max temperatures for scaling
-  const temperatures = filteredData.map(hour => hour.temp_c);
+  const temperatures = hourlyData.map(hour => hour.temp_c);
   const minTemp = Math.min(...temperatures) - 1;
   const maxTemp = Math.max(...temperatures) + 1;
 
-  // Create points for the curve
-  const points = filteredData.map((hour, index) => {
-    const x = (index * (width - 2 * padding)) / (filteredData.length - 1) + padding;
+  // Create points for the curve using all data points
+  const points = hourlyData.map((hour, index) => {
+    const x = (index * (width - 2 * padding)) / (hourlyData.length - 1) + padding;
     const y = (isMobile ? mobileHeight : height) - 
       (((hour.temp_c - minTemp) / (maxTemp - minTemp)) * ((isMobile ? mobileHeight : height) - 2 * padding) + padding);
     return `${x},${y}`;
@@ -96,19 +94,9 @@ export const TemperatureCurve: React.FC<TemperatureCurveProps> = ({ hourlyData, 
             className="drop-shadow-lg"
           />
 
-          {/* Area under the curve */}
-          <motion.path
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5, delay: 0.5 }}
-            d={`M ${padding},${isMobile ? mobileHeight : height} ${points} ${width - padding},${isMobile ? mobileHeight : height} Z`}
-            fill="url(#gradient)"
-            className="opacity-50"
-          />
-
-          {/* Temperature points */}
+          {/* Temperature points and labels */}
           {filteredData.map((hour, index) => {
-            const x = (index * (width - 2 * padding)) / (filteredData.length - 1) + padding;
+            const x = (index * 3 * (width - 2 * padding)) / (hourlyData.length - 1) + padding;
             const y = (isMobile ? mobileHeight : height) - 
               (((hour.temp_c - minTemp) / (maxTemp - minTemp)) * ((isMobile ? mobileHeight : height) - 2 * padding) + padding);
             
@@ -130,9 +118,9 @@ export const TemperatureCurve: React.FC<TemperatureCurveProps> = ({ hourlyData, 
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   x={x}
-                  y={y - (isMobile ? 10 : 15)}
+                  y={y - (isMobile ? 15 : 15)}
                   textAnchor="middle"
-                  className="fill-gray-600 dark:fill-gray-400 text-[9px] md:text-xs font-medium"
+                  className="fill-gray-800 dark:fill-gray-200 text-[12px] md:text-sm font-semibold"
                 >
                   {Math.round(hour.temp_c)}°
                 </motion.text>
@@ -143,9 +131,9 @@ export const TemperatureCurve: React.FC<TemperatureCurveProps> = ({ hourlyData, 
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   x={x}
-                  y={(isMobile ? mobileHeight : height) - (isMobile ? 6 : 10)}
+                  y={(isMobile ? mobileHeight : height) - (isMobile ? 8 : 10)}
                   textAnchor="middle"
-                  className="fill-gray-500 dark:fill-gray-400 text-[8px] md:text-xs"
+                  className="fill-gray-600 dark:fill-gray-400 text-[11px] md:text-sm"
                 >
                   {new Date(hour.time).getHours()}:00
                 </motion.text>
