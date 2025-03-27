@@ -14,8 +14,8 @@ export const TemperatureCurve: React.FC<TemperatureCurveProps> = ({ hourlyData, 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const width = 800;
   const height = 200;
-  const mobileHeight = 160;
-  const padding = isMobile ? 30 : 40;
+  const mobileHeight = 180;
+  const padding = isMobile ? 35 : 40;
 
   useEffect(() => {
     const handleResize = () => {
@@ -118,9 +118,9 @@ export const TemperatureCurve: React.FC<TemperatureCurveProps> = ({ hourlyData, 
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   x={x}
-                  y={y - (isMobile ? 15 : 15)}
+                  y={y - (isMobile ? 20 : 15)}
                   textAnchor="middle"
-                  className="fill-gray-800 dark:fill-gray-200 text-[12px] md:text-sm font-semibold"
+                  className="fill-gray-800 dark:fill-gray-200 text-[14px] md:text-sm font-semibold"
                 >
                   {Math.round(hour.temp_c)}°
                 </motion.text>
@@ -131,9 +131,9 @@ export const TemperatureCurve: React.FC<TemperatureCurveProps> = ({ hourlyData, 
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   x={x}
-                  y={(isMobile ? mobileHeight : height) - (isMobile ? 8 : 10)}
+                  y={(isMobile ? mobileHeight : height) - (isMobile ? 15 : 10)}
                   textAnchor="middle"
-                  className="fill-gray-600 dark:fill-gray-400 text-[11px] md:text-sm"
+                  className="fill-gray-600 dark:fill-gray-400 text-[13px] md:text-sm"
                 >
                   {new Date(hour.time).getHours()}:00
                 </motion.text>
