@@ -2,14 +2,22 @@ import React from 'react';
 import { MapPin } from 'lucide-react';
 import { SearchBar } from './SearchBar';
 import { motion } from 'framer-motion';
+import { ThemeToggle } from './ThemeToggle';
 import weatherHouse from '../assets/weather-house.svg';
 
 interface WelcomeScreenProps {
   onGetStarted: () => void;
   onSearch: (query: string) => void;
+  darkMode: boolean;
+  onToggleTheme: () => void;
 }
 
-export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onGetStarted, onSearch }) => {
+export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ 
+  onGetStarted, 
+  onSearch, 
+  darkMode, 
+  onToggleTheme 
+}) => {
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -17,6 +25,16 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onGetStarted, onSe
       transition={{ duration: 0.8 }}
       className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden bg-white dark:bg-black"
     >
+      {/* Theme Toggle Button */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="fixed top-6 right-6 z-50 md:top-8 md:right-8"
+      >
+        <ThemeToggle darkMode={darkMode} onToggle={onToggleTheme} />
+      </motion.div>
+
       {/* Background Gradient */}
       <motion.div 
         initial={{ opacity: 0 }}

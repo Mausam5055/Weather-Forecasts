@@ -169,7 +169,12 @@ function App() {
 
   // Show welcome screen on first visit
   if (showWelcome) {
-    return <WelcomeScreen onGetStarted={handleGetStarted} onSearch={fetchWeather} />;
+    return <WelcomeScreen 
+      onGetStarted={handleGetStarted} 
+      onSearch={fetchWeather} 
+      darkMode={darkMode}
+      onToggleTheme={toggleTheme}
+    />;
   }
 
   // Show home screen when searching or on error
