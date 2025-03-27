@@ -25,33 +25,30 @@ function App() {
   const [showWelcome, setShowWelcome] = useState(() => {
     return !localStorage.getItem('weatherAppVisited');
   });
-  const [darkMode, setDarkMode] = useState(true);
-
-  useEffect(() => {
-    // Check if user has a theme preference in localStorage
+  const [darkMode, setDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
-      setDarkMode(savedTheme === 'dark');
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setDarkMode(prefersDark);
+      return savedTheme === 'dark';
     }
-  }, []);
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
 
-  useEffect(() => {
-    // Update document class and localStorage when theme changes
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [darkMode]);
-
+  // Optimize theme switching with useCallback and batch updates
   const toggleTheme = useCallback(() => {
-    setDarkMode(prev => !prev);
+    setDarkMode(prev => {
+      const newTheme = !prev;
+      // Batch DOM updates
+      requestAnimationFrame(() => {
+        if (newTheme) {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        }
+      });
+      return newTheme;
+    });
   }, []);
 
   // Handle browser back button
@@ -387,12 +384,11 @@ function App() {
                     weather={weather}
                   />
                   
-                  {/* Temperature Curve - Both Mobile and Desktop */}
-                  <div>
-                    <TemperatureCurve 
-                      hourlyData={weather.forecast.forecastday[0].hour}
-                    />
-                  </div>
+                  {/* Temperature Curve */}
+                  <TemperatureCurve 
+                    hourlyData={weather.forecast.forecastday[0].hour} 
+                    darkMode={darkMode}
+                  />
 
                   {/* Search Another City - Mobile Only */}
                   <div className="block md:hidden">

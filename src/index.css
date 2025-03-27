@@ -38,7 +38,7 @@ body {
 
 /* Only apply transitions to specific properties that need them */
 .theme-transition {
-  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-property: background-color, border-color, color;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
   will-change: transform, opacity;
@@ -57,6 +57,7 @@ body {
   /* Reduce transition duration on mobile */
   .theme-transition {
     transition-duration: 100ms;
+    transition-property: background-color, color;
   }
 
   /* Disable transitions for less important elements on mobile */
@@ -74,11 +75,6 @@ body {
   .group-hover\:text-purple-400,
   .group-hover\:blur-2xl {
     transition: none !important;
-  }
-
-  /* Only keep essential transitions */
-  .theme-transition {
-    transition-property: background-color, color;
   }
 
   /* Optimize backdrop blur for mobile */

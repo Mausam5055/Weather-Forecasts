@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { Moon, Sun } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -8,6 +8,17 @@ interface ThemeToggleProps {
 }
 
 export const ThemeToggle: React.FC<ThemeToggleProps> = memo(({ darkMode, onToggle }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 640);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const handleClick = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
     onToggle();
@@ -16,8 +27,8 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = memo(({ darkMode, onToggl
   return (
     <motion.button
       onClick={handleClick}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={!isMobile ? { scale: 1.05 } : undefined}
+      whileTap={!isMobile ? { scale: 0.95 } : undefined}
       className={`
         p-2.5 rounded-xl backdrop-blur-lg theme-transition
         ${darkMode 
@@ -32,13 +43,13 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = memo(({ darkMode, onToggl
       aria-checked={darkMode}
     >
       <motion.div
-        initial={{ rotate: 0 }}
+        initial={false}
         animate={{ rotate: darkMode ? 180 : 0 }}
         transition={{ 
-          duration: 0.2,
+          duration: isMobile ? 0.1 : 0.2,
           ease: "easeInOut",
           type: "spring",
-          stiffness: 300
+          stiffness: isMobile ? 400 : 300
         }}
         className="theme-transition"
       >
