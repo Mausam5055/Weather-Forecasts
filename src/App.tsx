@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { WeatherCard } from './components/WeatherCard';
 import { HourlyForecast } from './components/HourlyForecast';
 import { WeeklyForecast } from './components/WeeklyForecast';
@@ -50,9 +50,9 @@ function App() {
     }
   }, [darkMode]);
 
-  const toggleTheme = () => {
-    setDarkMode(!darkMode);
-  };
+  const toggleTheme = useCallback(() => {
+    setDarkMode(prev => !prev);
+  }, []);
 
   // Handle browser back button
   useEffect(() => {
@@ -184,13 +184,13 @@ function App() {
 
   // Show weather dashboard
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white">
+    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white theme-transition">
       {/* Background Gradient */}
-      <div className="fixed inset-0 bg-gradient-to-br from-purple-100/50 via-white to-pink-100/50 dark:from-purple-900/10 dark:via-black dark:to-pink-900/10 pointer-events-none" />
+      <div className="fixed inset-0 bg-gradient-to-br from-purple-100/50 via-white to-pink-100/50 dark:from-purple-900/10 dark:via-black dark:to-pink-900/10 pointer-events-none theme-transition" />
       
       <div className="relative">
         {/* Navigation Bar - Responsive */}
-        <div className="w-full bg-white/80 dark:bg-black/20 border-b border-gray-200 dark:border-white/5 backdrop-blur-lg">
+        <div className="w-full bg-white/80 dark:bg-black/20 border-b border-gray-200 dark:border-white/5 backdrop-blur-lg theme-transition">
           <div className="container mx-auto px-4 md:px-6 py-4 max-w-7xl">
             {/* Mobile View */}
             <div className="md:hidden">

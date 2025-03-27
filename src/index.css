@@ -31,9 +31,25 @@ body {
          hover:bg-white/60 dark:hover:bg-black/40 transition-all duration-300;
 }
 
-/* Smooth transitions */
+/* Optimized transitions for theme switching */
 * {
-  @apply transition-colors duration-200;
+  @apply transition-colors duration-150;
+}
+
+/* Only apply transitions to specific properties that need them */
+.theme-transition {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Disable transitions for elements that don't need them */
+.no-transition {
+  transition: none !important;
 }
 
 :root {

@@ -19,7 +19,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = memo(({ darkMode, onToggl
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       className={`
-        p-2.5 rounded-xl backdrop-blur-lg transition-all duration-300
+        p-2.5 rounded-xl backdrop-blur-lg theme-transition
         ${darkMode 
           ? 'bg-black/30 hover:bg-black/40 border border-white/10' 
           : 'bg-white/50 hover:bg-white/60 border border-gray-200'
@@ -34,7 +34,8 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = memo(({ darkMode, onToggl
       <motion.div
         initial={{ rotate: 0 }}
         animate={{ rotate: darkMode ? 180 : 0 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="theme-transition"
       >
         {darkMode ? (
           <Sun className="w-5 h-5 text-white/90" aria-hidden="true" />
