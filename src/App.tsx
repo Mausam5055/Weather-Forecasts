@@ -969,8 +969,54 @@ function App() {
                         </div>
                       </div>
 
+                      {/* Contact Section - 3 columns */}
+                      <div className="md:col-span-3 space-y-6 order-1 md:order-none">
+                        <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90 pb-2 border-b border-gray-200 dark:border-white/10">
+                          Connect With Me
+                        </h3>
+                        <div className="flex flex-col space-y-4">
+                          <a 
+                            href="mailto:rikikumkar@gmail.com"
+                            className="text-gray-600 dark:text-white/60 hover:text-purple-500 dark:hover:text-purple-400 transition-colors text-base flex items-center gap-3 group"
+                          >
+                            <div className="p-2 rounded-lg bg-purple-500/5 group-hover:bg-purple-500/10 transition-colors">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 text-purple-500">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                              </svg>
+                            </div>
+                            rikikumkar@gmail.com
+                          </a>
+                          <a 
+                            href="https://github.com/Mausam5055"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-600 dark:text-white/60 hover:text-purple-500 dark:hover:text-purple-400 transition-colors text-base flex items-center gap-3 group"
+                          >
+                            <div className="p-2 rounded-lg bg-purple-500/5 group-hover:bg-purple-500/10 transition-colors">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 text-purple-500">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                              </svg>
+                            </div>
+                            GitHub
+                          </a>
+                          <a 
+                            href="https://www.linkedin.com/in/mausam-kar-6388861a7/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-600 dark:text-white/60 hover:text-purple-500 dark:hover:text-purple-400 transition-colors text-base flex items-center gap-3 group"
+                          >
+                            <div className="p-2 rounded-lg bg-purple-500/5 group-hover:bg-purple-500/10 transition-colors">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 text-purple-500">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 2a2 2 0 1 0 0 4 2 2 0 1 0 0-4" />
+                              </svg>
+                            </div>
+                            LinkedIn
+                          </a>
+                        </div>
+                      </div>
+
                       {/* Rate My Work Section - 3 columns */}
-                      <div className="md:col-span-3 space-y-6">
+                      <div className="md:col-span-3 space-y-6 order-2 md:order-none">
                         <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90 pb-2 border-b border-gray-200 dark:border-white/10">
                           Rate My Work
                         </h3>
@@ -1044,52 +1090,6 @@ function App() {
                               </div>
                             </div>
                           )}
-                        </div>
-                      </div>
-
-                      {/* Contact Section - 3 columns */}
-                      <div className="md:col-span-3 space-y-6">
-                        <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90 pb-2 border-b border-gray-200 dark:border-white/10">
-                          Connect With Me
-                        </h3>
-                        <div className="flex flex-col space-y-4">
-                          <a 
-                            href="mailto:rikikumkar@gmail.com"
-                            className="text-gray-600 dark:text-white/60 hover:text-purple-500 dark:hover:text-purple-400 transition-colors text-base flex items-center gap-3 group"
-                          >
-                            <div className="p-2 rounded-lg bg-purple-500/5 group-hover:bg-purple-500/10 transition-colors">
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 text-purple-500">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                              </svg>
-                            </div>
-                            rikikumkar@gmail.com
-                          </a>
-                          <a 
-                            href="https://github.com/Mausam5055"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-600 dark:text-white/60 hover:text-purple-500 dark:hover:text-purple-400 transition-colors text-base flex items-center gap-3 group"
-                          >
-                            <div className="p-2 rounded-lg bg-purple-500/5 group-hover:bg-purple-500/10 transition-colors">
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 text-purple-500">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                              </svg>
-                            </div>
-                            GitHub
-                          </a>
-                          <a 
-                            href="https://www.linkedin.com/in/mausam-kar-6388861a7/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-600 dark:text-white/60 hover:text-purple-500 dark:hover:text-purple-400 transition-colors text-base flex items-center gap-3 group"
-                          >
-                            <div className="p-2 rounded-lg bg-purple-500/5 group-hover:bg-purple-500/10 transition-colors">
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 text-purple-500">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 2a2 2 0 1 0 0 4 2 2 0 1 0 0-4" />
-                              </svg>
-                            </div>
-                            LinkedIn
-                          </a>
                         </div>
                       </div>
                     </div>
