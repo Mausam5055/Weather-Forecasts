@@ -26,12 +26,28 @@ function App() {
     return !localStorage.getItem('weatherAppVisited');
   });
   const [darkMode, setDarkMode] = useState(() => {
+    // First check localStorage for user preference
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
       return savedTheme === 'dark';
     }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // If no saved preference, check system preference
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // If system prefers light, still default to dark
+    return prefersDark || true;
   });
+
+  // Initialize theme on mount
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, []);
 
   // Optimize theme switching with useCallback and batch updates
   const toggleTheme = useCallback(() => {
