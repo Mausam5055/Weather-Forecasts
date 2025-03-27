@@ -385,15 +385,12 @@ function App() {
                   {/* Main Weather Card */}
                   <WeatherCard 
                     weather={weather}
-                    darkMode={darkMode}
-                    onToggleTheme={toggleTheme}
                   />
                   
                   {/* Temperature Curve - Both Mobile and Desktop */}
                   <div>
                     <TemperatureCurve 
                       hourlyData={weather.forecast.forecastday[0].hour}
-                      darkMode={darkMode}
                     />
                   </div>
 
