@@ -37,6 +37,31 @@ function App() {
     // If system prefers light, still default to dark
     return prefersDark || true;
   });
+  // Rating popup states
+  const [showRatingPopup, setShowRatingPopup] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [feedback, setFeedback] = useState('');
+  const [showThankYou, setShowThankYou] = useState(false);
+
+  // Rating handlers
+  const handleRating = (value: number) => {
+    setRating(value);
+  };
+
+  const handleSubmitRating = () => {
+    // Here you would typically send the rating and feedback to your backend
+    console.log('Rating submitted:', { rating, feedback });
+    
+    // Show thank you message
+    setShowThankYou(true);
+    
+    // Reset the form after 3 seconds
+    setTimeout(() => {
+      setRating(0);
+      setFeedback('');
+      setShowThankYou(false);
+    }, 3000);
+  };
 
   // Initialize theme on mount
   useEffect(() => {
@@ -868,29 +893,52 @@ function App() {
                 <div className="relative border-t border-gray-200 dark:border-white/5">
                   <div className="container mx-auto px-4 py-12">
                     {/* Footer Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-                      {/* Brand Section */}
-                      <div className="space-y-4">
-                        <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                          Weather ForeCasts
-                        </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8">
+                      {/* Brand Section - 3 columns */}
+                      <div className="md:col-span-3 space-y-4">
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 bg-white/50 dark:bg-black/30 rounded-xl border border-gray-200 dark:border-white/10">
+                            <svg 
+                              xmlns="http://www.w3.org/2000/svg" 
+                              viewBox="0 0 24 24" 
+                              fill="none" 
+                              stroke="currentColor" 
+                              className="w-6 h-6 text-purple-400"
+                              strokeWidth="2"
+                              strokeLinecap="round" 
+                              strokeLinejoin="round"
+                            >
+                              <path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                              <path d="M16 16v0a3 3 0 003-3v-1a3 3 0 00-3-3v0" />
+                              <path d="M8 16v0a3 3 0 01-3-3v-1a3 3 0 013-3v0" />
+                            </svg>
+                          </div>
+                          <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                            Weather ForeCasts
+                          </h3>
+                        </div>
                         <p className="text-gray-600 dark:text-white/60 text-base leading-relaxed">
                           Your Daily Weather Companion, providing accurate forecasts and intelligent weather insights to help you plan your day better.
                         </p>
                       </div>
 
-                      {/* Quick Links */}
-                      <div className="space-y-4">
+                      {/* Quick Links - 2 columns */}
+                      <div className="md:col-span-2 space-y-4">
                         <h3 className="text-base font-semibold uppercase tracking-wider text-gray-800 dark:text-white/80">
                           Quick Links
                         </h3>
-                        <div className="flex flex-col space-y-2">
-                          <a href="#" className="text-gray-600 dark:text-white/60 hover:text-gray-900 transition-colors text-base">Home</a>
+                        <div className="flex flex-col space-y-3">
+                          <a href="#" className="text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white transition-colors text-base flex items-center gap-2 group">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 group-hover:text-purple-400 transition-colors">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                            Home
+                          </a>
                           <a 
                             href="https://mausam03.vercel.app/" 
                             target="_blank" 
                             rel="noopener noreferrer" 
-                            className="text-gray-600 dark:text-white/60 hover:text-gray-900 transition-colors text-base flex items-center gap-2 group"
+                            className="text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white transition-colors text-base flex items-center gap-2 group"
                           >
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 group-hover:text-purple-400 transition-colors">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zm0 0a9 9 0 0 0 6.364-15.364M12 12h.01M8 12h.01M16 12h.01" />
@@ -901,15 +949,93 @@ function App() {
                         </div>
                       </div>
 
-                      {/* Contact Section */}
-                      <div className="space-y-4">
+                      {/* Rate My Work Section - 3 columns */}
+                      <div className="md:col-span-3 space-y-4">
                         <h3 className="text-base font-semibold uppercase tracking-wider text-gray-800 dark:text-white/80">
-                          Connect With Us
+                          Rate My Work
                         </h3>
-                        <div className="flex flex-col space-y-2">
+                        <div className="bg-gradient-to-br from-white/30 to-white/10 dark:from-black/20 dark:to-black/10 rounded-xl p-4 border border-white/20 dark:border-white/5 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
+                          {showThankYou ? (
+                            <div className="space-y-4 text-center py-4">
+                              <div className="text-4xl mb-2">🎉</div>
+                              <p className="text-sm text-gray-700 dark:text-white/70 font-medium">
+                                Thank you for your feedback!
+                              </p>
+                              <p className="text-xs text-gray-500 dark:text-white/50">
+                                Your rating helps us improve
+                              </p>
+                            </div>
+                          ) : rating === 0 ? (
+                            <div className="space-y-4">
+                              <p className="text-sm text-gray-700 dark:text-white/70">
+                                How would you rate your experience?
+                              </p>
+                              <div className="flex justify-center space-x-2">
+                                {[1, 2, 3, 4, 5].map((star) => (
+                                  <button
+                                    key={star}
+                                    onClick={() => handleRating(star)}
+                                    className="text-2xl focus:outline-none transition-all duration-300 hover:scale-110 text-gray-300 dark:text-gray-600 hover:text-yellow-400"
+                                  >
+                                    ★
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="space-y-4">
+                              <div className="flex justify-center space-x-2">
+                                {[1, 2, 3, 4, 5].map((star) => (
+                                  <button
+                                    key={star}
+                                    onClick={() => handleRating(star)}
+                                    className={`text-2xl focus:outline-none transition-all duration-300 hover:scale-110 ${
+                                      rating >= star ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600'
+                                    }`}
+                                  >
+                                    ★
+                                  </button>
+                                ))}
+                              </div>
+                              <textarea
+                                value={feedback}
+                                onChange={(e) => setFeedback(e.target.value)}
+                                placeholder="Tell us what you think (optional)"
+                                className="w-full px-3 py-2 text-sm rounded-lg border border-white/20 dark:border-white/5 bg-white/20 dark:bg-black/20 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-white/40 focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500/20 backdrop-blur-sm transition-all duration-300"
+                                rows={2}
+                              />
+                              <div className="flex gap-2">
+                                <button
+                                  onClick={handleSubmitRating}
+                                  className="flex-1 bg-gradient-to-r from-purple-500/80 to-pink-500/80 hover:from-purple-500 hover:to-pink-500 text-white py-2 rounded-lg text-sm transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm"
+                                >
+                                  Submit
+                                </button>
+                                <button
+                                  onClick={() => {
+                                    setRating(0);
+                                    setFeedback('');
+                                    setShowThankYou(false);
+                                  }}
+                                  className="px-4 py-2 text-sm rounded-lg border border-white/20 dark:border-white/5 text-gray-700 dark:text-white/70 hover:bg-white/10 dark:hover:bg-white/5 transition-all duration-300 backdrop-blur-sm"
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Contact Section - 4 columns */}
+                      <div className="md:col-span-4 space-y-4">
+                        <h3 className="text-base font-semibold uppercase tracking-wider text-gray-800 dark:text-white/80">
+                          Connect With Me
+                        </h3>
+                        <div className="flex flex-col space-y-3">
                           <a 
                             href="mailto:rikikumkar@gmail.com"
-                            className="text-gray-600 dark:text-white/60 hover:text-gray-900 transition-colors text-base flex items-center gap-2 group"
+                            className="text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white transition-colors text-base flex items-center gap-2 group"
                           >
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 group-hover:text-purple-400 transition-colors">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -920,7 +1046,7 @@ function App() {
                             href="https://github.com/Mausam5055"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-600 dark:text-white/60 hover:text-gray-900 transition-colors text-base flex items-center gap-2 group"
+                            className="text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white transition-colors text-base flex items-center gap-2 group"
                           >
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 group-hover:text-purple-400 transition-colors">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
@@ -931,7 +1057,7 @@ function App() {
                             href="https://www.linkedin.com/in/mausam-kar-6388861a7/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-600 dark:text-white/60 hover:text-gray-900 transition-colors text-base flex items-center gap-2 group"
+                            className="text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white transition-colors text-base flex items-center gap-2 group"
                           >
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 group-hover:text-purple-400 transition-colors">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 2a2 2 0 1 0 0 4 2 2 0 1 0 0-4" />
@@ -967,7 +1093,7 @@ function App() {
 
                         {/* Copyright */}
                         <div className="text-gray-600 dark:text-white/60 text-base text-center md:text-left order-1 md:order-2">
-                          © {new Date().getFullYear()} Weather ForeCasts. All Rights Reserved
+                          © {new Date().getFullYear()} Mausam Kar. All Rights Reserved
                         </div>
                       </div>
                     </div>
