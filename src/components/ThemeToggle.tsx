@@ -1,5 +1,6 @@
 import React, { memo, useCallback } from 'react';
 import { Moon, Sun } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface ThemeToggleProps {
   darkMode: boolean;
@@ -13,20 +14,35 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = memo(({ darkMode, onToggl
   }, [onToggle]);
 
   return (
-    <button
+    <motion.button
       onClick={handleClick}
-      className="p-2 rounded-lg bg-gray-900 dark:bg-gray-800 hover:bg-gray-800 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className={`
+        p-2.5 rounded-xl backdrop-blur-lg transition-all duration-300
+        ${darkMode 
+          ? 'bg-black/30 hover:bg-black/40 border border-white/10' 
+          : 'bg-white/50 hover:bg-white/60 border border-gray-200'
+        }
+        focus:outline-none focus:ring-2 focus:ring-purple-400/20
+      `}
       aria-label={`Switch to ${darkMode ? 'light' : 'dark'} mode`}
       type="button"
       role="switch"
       aria-checked={darkMode}
     >
-      {darkMode ? (
-        <Sun className="w-5 h-5 text-yellow-500" aria-hidden="true" />
-      ) : (
-        <Moon className="w-5 h-5 text-gray-300" aria-hidden="true" />
-      )}
-    </button>
+      <motion.div
+        initial={{ rotate: 0 }}
+        animate={{ rotate: darkMode ? 180 : 0 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
+        {darkMode ? (
+          <Sun className="w-5 h-5 text-white/90" aria-hidden="true" />
+        ) : (
+          <Moon className="w-5 h-5 text-gray-900" aria-hidden="true" />
+        )}
+      </motion.div>
+    </motion.button>
   );
 });
 

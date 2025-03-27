@@ -321,26 +321,26 @@ function App() {
                   {weather.location.country}
                 </div>
                 <div className="flex flex-wrap items-center justify-center gap-3 mt-3">
-                  <div className="flex items-center gap-2 text-gray-600 dark:text-white/60 text-sm md:text-base bg-[#1A1A1A] px-4 py-2 rounded-full border border-gray-200 dark:border-white/5">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-yellow-400">
+                  <div className="flex items-center gap-2 text-gray-700 dark:text-white/60 text-sm md:text-base bg-white/50 dark:bg-[#1A1A1A] px-4 py-2 rounded-full border border-gray-200 dark:border-white/5 hover:bg-white/60 dark:hover:bg-[#202020] transition-all duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-yellow-500 dark:text-yellow-400">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                     </svg>
                     Max: {Math.round(weather.forecast.forecastday[0].day.maxtemp_c)}°
                   </div>
-                  <div className="flex items-center gap-2 text-gray-600 dark:text-white/60 text-sm md:text-base bg-[#1A1A1A] px-4 py-2 rounded-full border border-gray-200 dark:border-white/5">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-blue-400">
+                  <div className="flex items-center gap-2 text-gray-700 dark:text-white/60 text-sm md:text-base bg-white/50 dark:bg-[#1A1A1A] px-4 py-2 rounded-full border border-gray-200 dark:border-white/5 hover:bg-white/60 dark:hover:bg-[#202020] transition-all duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-blue-500 dark:text-blue-400">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12l-6.172-6.172a4 4 0 00-5.656 0L2 12m0 0l6.172 6.172a4 4 0 005.656 0L20 12m0 0l-2.172-2.172M20 12l-2.172 2.172" />
                     </svg>
                     Min: {Math.round(weather.forecast.forecastday[0].day.mintemp_c)}°
                   </div>
-                  <div className="flex items-center gap-2 text-gray-600 dark:text-white/60 text-sm md:text-base bg-[#1A1A1A] px-4 py-2 rounded-full border border-gray-200 dark:border-white/5">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-purple-400">
+                  <div className="flex items-center gap-2 text-gray-700 dark:text-white/60 text-sm md:text-base bg-white/50 dark:bg-[#1A1A1A] px-4 py-2 rounded-full border border-gray-200 dark:border-white/5 hover:bg-white/60 dark:hover:bg-[#202020] transition-all duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-purple-500 dark:text-purple-400">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     {new Date(weather.location.localtime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </div>
-                  <div className="flex items-center gap-2 text-gray-600 dark:text-white/60 text-sm md:text-base bg-[#1A1A1A] px-4 py-2 rounded-full border border-gray-200 dark:border-white/5">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-pink-400">
+                  <div className="flex items-center gap-2 text-gray-700 dark:text-white/60 text-sm md:text-base bg-white/50 dark:bg-[#1A1A1A] px-4 py-2 rounded-full border border-gray-200 dark:border-white/5 hover:bg-white/60 dark:hover:bg-[#202020] transition-all duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4 text-pink-500 dark:text-pink-400">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     {weather.location.tz_id.split('/')[1].replace('_', ' ')}

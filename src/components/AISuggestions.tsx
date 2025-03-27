@@ -7,14 +7,12 @@ interface AISuggestionsProps {
   weather: WeatherData;
 }
 
-type Priority = 'high' | 'medium' | 'low';
-
 interface Suggestion {
   icon: JSX.Element;
   title: string;
   text: string;
   color: string;
-  priority: Priority;
+  priority: 'high' | 'medium' | 'low';
 }
 
 export const AISuggestions: React.FC<AISuggestionsProps> = ({ weather }) => {
@@ -133,14 +131,10 @@ export const AISuggestions: React.FC<AISuggestionsProps> = ({ weather }) => {
       });
     }
 
-    // Sort suggestions by priority
-    const priorityOrder: Record<Priority, number> = {
-      high: 0,
-      medium: 1,
-      low: 2
-    };
-
-    return suggestions.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
+    return suggestions.sort((a, b) => {
+      const priorityOrder = { high: 0, medium: 1, low: 2 };
+      return priorityOrder[a.priority] - priorityOrder[b.priority];
+    }).slice(0, 4);
   };
 
   const suggestions = getSuggestions();

@@ -1,9 +1,9 @@
 import React from 'react';
-import { WeatherForecast } from '../types/weather';
-import { Cloud, CloudRain, Sun, Moon } from 'lucide-react';
+import { Sun, Moon, Cloud, CloudRain } from 'lucide-react';
+import { WeatherData } from '../types/weather';
 
 interface WeeklyForecastProps {
-  forecast: WeatherForecast[];
+  forecast: WeatherData['forecast']['forecastday'];
 }
 
 export const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecast }) => {
@@ -35,10 +35,10 @@ export const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecast }) => {
         {forecast.map((day) => (
           <div
             key={day.date}
-            className="bg-gray-50 dark:bg-[#1A1A1A] rounded-2xl p-4 border border-gray-200 dark:border-white/5 hover:bg-gray-100 dark:hover:bg-[#222222] transition-all duration-300"
+            className="bg-gray-50 dark:bg-[#1A1A1A] rounded-2xl p-4 border border-gray-200 dark:border-white/5 hover:bg-gray-100 dark:hover:bg-[#202020] transition-all duration-300"
           >
             <div className="flex flex-col items-center space-y-3">
-              <div className="text-sm font-medium text-gray-900 dark:text-white/80">{getDayName(day.date)}</div>
+              <div className="text-sm font-medium text-gray-900 dark:text-white/90">{getDayName(day.date)}</div>
               <div className="text-xs text-gray-500 dark:text-white/40">{day.date.split('-')[2]} {new Date(day.date).toLocaleString('default', { month: 'short' })}</div>
               {getWeatherIcon(day.day.condition.code, true)}
               <div className="text-2xl font-bold text-gray-900 dark:text-white">{Math.round(day.day.maxtemp_c)}°</div>
@@ -68,10 +68,10 @@ export const WeeklyForecast: React.FC<WeeklyForecastProps> = ({ forecast }) => {
           {forecast.map((day) => (
             <div
               key={day.date}
-              className="bg-gray-50 dark:bg-[#1A1A1A] rounded-2xl p-4 border border-gray-200 dark:border-white/5 min-w-[140px] hover:bg-gray-100 dark:hover:bg-[#222222] transition-all duration-300"
+              className="bg-gray-50 dark:bg-[#1A1A1A] rounded-2xl p-4 border border-gray-200 dark:border-white/5 min-w-[140px] hover:bg-gray-100 dark:hover:bg-[#202020] transition-all duration-300"
             >
               <div className="flex flex-col items-center space-y-3">
-                <div className="text-sm font-medium text-gray-900 dark:text-white/80">{getDayName(day.date)}</div>
+                <div className="text-sm font-medium text-gray-900 dark:text-white/90">{getDayName(day.date)}</div>
                 <div className="text-xs text-gray-500 dark:text-white/40">{day.date.split('-')[2]} {new Date(day.date).toLocaleString('default', { month: 'short' })}</div>
                 {getWeatherIcon(day.day.condition.code, true)}
                 <div className="text-2xl font-bold text-gray-900 dark:text-white">{Math.round(day.day.maxtemp_c)}°</div>
