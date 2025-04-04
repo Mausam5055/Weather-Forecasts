@@ -17,21 +17,11 @@ export default function ThemeTransition({ isChanging, isDark }: ThemeTransitionP
             duration: 0.5,
             ease: [0.4, 0, 0.2, 1]
           }}
-          className={`fixed inset-0 z-[99999] backdrop-blur-md ${
+          className={`fixed inset-0 z-[9999] pointer-events-none ${
             isDark 
-              ? "bg-black" 
-              : "bg-white"
+              ? "bg-gradient-to-br from-gray-900 via-black to-gray-900" 
+              : "bg-gradient-to-br from-white via-gray-50 to-white"
           }`}
-          style={{ 
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            width: '100vw',
-            height: '100vh',
-            zIndex: 99999
-          }}
         />
       )}
     </AnimatePresence>
