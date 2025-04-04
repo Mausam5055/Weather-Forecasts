@@ -3,6 +3,7 @@ import { SearchBar } from './SearchBar';
 import { MapPin, Sun, Moon, Cloud, Wind, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ThemeToggle } from './ThemeToggle';
+import ThemeTransition from './ThemeTransition';
 import weatherHouse from '../assets/weather-house.svg';
 
 interface HomeProps {
@@ -29,6 +30,7 @@ export const Home: React.FC<HomeProps> = ({
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [isMobile, setIsMobile] = useState(false);
+  const [isThemeChanging, setIsThemeChanging] = useState(false);
   const suggestionsRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -118,6 +120,21 @@ export const Home: React.FC<HomeProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Handle theme toggle with transition
+  const handleThemeToggle = () => {
+    setIsThemeChanging(true);
+    
+    // Use a small delay to ensure the transition starts before changing the theme
+    setTimeout(() => {
+      onToggleTheme();
+      
+      // Reset the transition state after animation
+      setTimeout(() => {
+        setIsThemeChanging(false);
+      }, 600);
+    }, 50);
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -125,6 +142,8 @@ export const Home: React.FC<HomeProps> = ({
       transition={{ duration: isMobile ? 0.4 : 0.8 }}
       className="min-h-screen flex flex-col items-center justify-center p-6 relative overflow-hidden bg-white dark:bg-black"
     >
+      <ThemeTransition isChanging={isThemeChanging} isDark={darkMode} />
+      
       {/* Theme Toggle Button */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -132,7 +151,7 @@ export const Home: React.FC<HomeProps> = ({
         transition={{ duration: 0.5 }}
         className="fixed top-6 right-6 z-50 md:top-8 md:right-8"
       >
-        <ThemeToggle darkMode={darkMode} onToggle={onToggleTheme} />
+        <ThemeToggle darkMode={darkMode} onToggle={handleThemeToggle} />
       </motion.div>
 
       {/* Video Background - Only load on desktop */}
